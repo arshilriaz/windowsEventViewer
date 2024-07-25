@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hosts Data</title>
+        <style>
+            table {
+                width:50%;
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td{
+                padding: 15px;
+                text-align: left;
+            }
+            th{
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Hosts Data</h1>
+        <table>
+            <tr>
+                <th>Hostname</th>
+                <th>Username</th>
+                <th>Action</th>
+            </tr>
+            {% for host in hosts.details %}
+            <tr>
+                <td>{{ host.hostname }}</td>
+                <td>{{ host.username }}</td>
+                <td>
+                    <form action="{{ url_for('main.getLog') }}" method = "post" enctype="multipart/form-data">
+                        <input type = "hidden" name = "hostname" value="{{ host['hostname'] }}">
+                        <input type = "hidden" name = "username" value="{{ host['username'] }}">
+                        <input type = "hidden" name = "password" value="{{ host['password'] }}">
+                        <input type = "submit" value = "see logs">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </body>
+</html>

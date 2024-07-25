@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload JSON</title>
+    <style>
+        input[type="file"] {
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #999;
+        }
+        .labels{
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload Host Data</h1>
+    <form action="{{ url_for('main.upload') }}" method = "post" enctype="multipart/form-data">
+        <div className="labels">
+            <label for="myfile">Select Host File:</label>
+            <input type = "file" name = "file" accept = ".json" required>
+        </div>
+        <br><br>
+        <input type = "submit" value = "upload">
+    </form>
+
+    <h2>or</h2>
+
+    <h1>Upload Host Data and EVTX File</h1>
+    <form action="{{ url_for('main.upload_evtx') }}" method = "post" enctype="multipart/form-data">
+        <div className="labels">
+            <label for="myfile">Select Host File:</label>
+            <input type = "file" name = "hostfile" accept = ".json" required>
+        </div>
+        <div className="labels">
+            <label for="myfile">Select EVTX File:</label>
+            <input type = "file" name = "evtxfile" accept = ".evtx" required>
+        </div>
+        <br><br>
+        <input type = "submit" value = "upload">
+    </form>
+
+</body>
+</html>

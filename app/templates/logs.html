@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Event Logs</title>
+</head>
+<body>
+    <h1>Windows Event Logs</h1>
+    {% if error %}
+        <div style="color: red;">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% else %}
+        <h2>Application Logs:</h2>
+        <pre id="json">{{ logs }}</pre>
+    {% endif %}
+</body>
+</html>
