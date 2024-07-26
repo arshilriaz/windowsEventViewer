@@ -4,6 +4,7 @@ import winrm
 import json
 from Evtx.Evtx import FileHeader
 from xml.etree.ElementTree import XML
+import datetime
 
 def get_logs(hostname, username, password):
     try:
@@ -94,6 +95,49 @@ def evtx_lookup_and_conversion(evtx_file, json_path):
     with open(json_path, "w") as json_file:
         json.dump(events, json_file, indent=4)
 
-# Example usage
-# evtx_to_json("path_to_evtx_file.evtx", "output_file.json")
+def fetch_logs(hostname, username, password, last_fetched):
+
+    if last_fetched is not None:
+        if type(last_fetched) is str:
+            milliseconds = int(str(last_fetched).strip('/Date()').strip(')/'))
+            last_fetched = datetime.datetime.fromtimestamp(milliseconds / 1000.0)   
+
+    session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
+    
+    # Adjust the PowerShell command to fetch logs since the last fetched timestamp if available
+    if last_fetched:
+        ps_script = f"""
+        $last_fetched = [DateTime]::ParseExact('{last_fetched}', 'yyyy-MM-dd HH:mm:ss', $null)
+        Get-EventLog -LogName Application -After $last_fetched | ConvertTo-Json -Depth 5
+        """
+    else:
+        ps_script = """
+                Get-EventLog -LogName Application |
+                Select-Object -Property *, 
+                @{Name="TimeGeneratedReadable";Expression={($_.TimeGenerated).ToUniversalTime()}}, 
+                @{Name="TimeWrittenReadable";Expression={($_.TimeWritten).ToUniversalTime()}} |
+                ConvertTo-Json -Depth 5 |
+                Format-List
+                """
+    
+    result = session.run_ps(ps_script)
+    if result.status_code == 0:
+        logs_output = result.std_out.decode()
+        try:
+            logs_data = json.loads(logs_output)
+            # Update last_fetched to the most recent log entry time
+            if logs_data:
+                last_fetched = logs_data[0]['TimeGenerated']
+            return logs_data, last_fetched
+        except json.JSONDecodeError:
+            return [], last_fetched
+    else:
+        return [], last_fetched
+    
+def convert_json_date_to_datetime(json_date):
+    # Extract milliseconds using a regular expression
+    milliseconds = int(re.search(r'\d+', json_date).group())
+    # Convert milliseconds to a datetime object
+    return datetime.datetime.fromtimestamp(milliseconds / 1000.0)
+
 
