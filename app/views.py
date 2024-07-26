@@ -31,7 +31,7 @@ def upload():
         if new_unique_data:
             existing_data["details"].extend(new_data["details"])
 
-            with open(os.getenv("MODEL_INPUT_DIR"), 'w') as f:
+            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
                 json.dump(existing_data, f, indent=4)
 
         return redirect(url_for('main.hosts'))
@@ -56,22 +56,25 @@ def upload_evtx():
         password=host_json_data["details"][0]['password']
 
         file_name = f"{hostname}_{username}_{password}.json"
-        file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR"), file_name)
+        file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR"), file_name).replace("\\", "/")
 
         evtx_file_name = f"{hostname}_{username}_{password}.evtx"
-        evtx_file_path = os.path.join(os.getcwd() + "/" + os.getenv("MODEL_INPUT_EVTX"), evtx_file_name)
+        evtx_file_path = os.path.join(os.getcwd() + "/" + os.getenv("MODEL_INPUT_EVTX"), evtx_file_name).replace("\\", "/")
         evtxFile.save(evtx_file_path)    
 
-        # Extx file lookup and convert to json
-        subprocess.run([f"cd python-evtx && cd scripts && ls && python3 evtx_dump.py {evtx_file_path} {hostname} {username} {password}"], shell=True)
+        # EVTX file lookup and convert to json
+        command = [
+            "python", "evtx_dump.py", evtx_file_path, hostname, username, password
+        ]
+        subprocess.run(["cd", "python-evtx", "&&", "cd", "scripts", "&&"] + command, shell=True)
 
         if new_unique_data:
             existing_data["details"].extend(host_json_data["details"])
 
-            with open(os.getenv("MODEL_INPUT_DIR"), 'w') as f:
+            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
                 json.dump(existing_data, f, indent=4)
 
-        with open(os.getenv("MODEL_INPUT_DIR"), 'r') as f:
+        with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
             hosts = json.load(f)
             return render_template('hosts.html', hosts=hosts)
         
@@ -83,7 +86,7 @@ def upload_evtx():
 @main.route('/hosts')
 def hosts():
     try:
-        with open(os.getenv("MODEL_INPUT_DIR"), 'r') as f:
+        with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
             hosts = json.load(f)
             return render_template('hosts.html', hosts=hosts)
     except Exception as e:
@@ -98,7 +101,7 @@ def getLog():
         password = request.form['password']
         
         file_name = f"{hostname}_{username}_{password}.json"
-        file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR"), file_name)
+        file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR").replace("\\", "/"), file_name)
 
         with open(file_path, "r") as f:
             log_data = json.load(f)
