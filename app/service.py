@@ -5,6 +5,7 @@ import json
 from Evtx.Evtx import FileHeader
 from xml.etree.ElementTree import XML
 import datetime
+import re
 
 def get_logs(hostname, username, password):
     try:

@@ -19,6 +19,9 @@
             th{
                 background-color: #f2f2f2;
             }
+            .alignButtons{
+               
+            }
         </style>
     </head>
 
@@ -34,13 +37,22 @@
             <tr>
                 <td>{{ host.hostname }}</td>
                 <td>{{ host.username }}</td>
-                <td>
-                    <form action="{{ url_for('main.getLog') }}" method = "post" enctype="multipart/form-data">
-                        <input type = "hidden" name = "hostname" value="{{ host['hostname'] }}">
-                        <input type = "hidden" name = "username" value="{{ host['username'] }}">
-                        <input type = "hidden" name = "password" value="{{ host['password'] }}">
-                        <input type = "submit" value = "see logs">
-                    </form>
+                <td>  
+                    <div className="alignButtons">      
+                        <form action="{{ url_for('main.getLog') }}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="hostname" value="{{ host['hostname'] }}">
+                            <input type="hidden" name="username" value="{{ host['username'] }}">
+                            <input type="hidden" name="password" value="{{ host['password'] }}">
+                            <input type="submit" value="See Logs">
+                        </form> 
+
+                        <form action="{{ url_for('main.stream') }}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="hostname" value="{{ host['hostname'] }}">
+                            <input type="hidden" name="username" value="{{ host['username'] }}">
+                            <input type="hidden" name="password" value="{{ host['password'] }}">
+                            <input type="submit" value="Live Logs">
+                        </form> 
+                    </div>               
                 </td>
             </tr>
             {% endfor %}

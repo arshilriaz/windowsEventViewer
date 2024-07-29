@@ -1,6 +1,14 @@
 ## Commands
     pip install pywinrm
 
+    pip install flask
+
+    pip install python-dotenv
+
+    pip install pywinrm
+    
+    pip install python-evtx
+
     winrm set winrm/config/service/auth '@{Basic="true"}'
 
     winrm set winrm/config/service '@{AllowUnencrypted="true"}'
