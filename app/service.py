@@ -10,7 +10,7 @@ import re
 def get_logs(hostname, username, password):
     try:
         session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
-        app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10 | Format-List'
+        app_logs_command = 'Get-EventLog -LogName Application | ConvertTo-Json -Depth 10 | Format-List'
         
         app_logs = session.run_ps(app_logs_command)
 
@@ -108,9 +108,11 @@ def fetch_logs(hostname, username, password, last_fetched):
     # Adjust the PowerShell command to fetch logs since the last fetched timestamp if available
     if last_fetched:
         ps_script = f"""
-        $last_fetched = [DateTime]::ParseExact('{last_fetched}', 'yyyy-MM-dd HH:mm:ss', $null)
-        Get-EventLog -LogName Application -After $last_fetched | ConvertTo-Json -Depth 5
+            $last_fetched = [DateTime]::ParseExact('{last_fetched}', 'yyyy-MM-dd HH:mm:ss', $null)
+            Get-EventLog -LogName Application -After $last_fetched | 
+            ConvertTo-Json -Depth 5
         """
+
     else:
         ps_script = """
                 Get-EventLog -LogName Application |
@@ -128,7 +130,10 @@ def fetch_logs(hostname, username, password, last_fetched):
             logs_data = json.loads(logs_output)
             # Update last_fetched to the most recent log entry time
             if logs_data:
-                last_fetched = logs_data[0]['TimeGenerated']
+                if "Index" in logs_data:
+                    last_fetched = logs_data['TimeGenerated']
+                else:
+                    last_fetched = logs_data[0]['TimeGenerated']
             return logs_data, last_fetched
         except json.JSONDecodeError:
             return [], last_fetched
@@ -141,4 +146,5 @@ def convert_json_date_to_datetime(json_date):
     # Convert milliseconds to a datetime object
     return datetime.datetime.fromtimestamp(milliseconds / 1000.0)
 
-
+def preprocess(hostname, username, password, host_json_data, ):
+    return host_json_data
