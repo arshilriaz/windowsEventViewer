@@ -19,14 +19,15 @@ def main():
     output_dir = output_dir_initial.replace("\\", "/")
     output_path = os.path.join(output_dir, filename)
     output_path = output_path.replace("/python-evtx/scripts", "")
-    print(output_path)
  
     # Ensure directory exists
     os.makedirs(output_dir, exist_ok=True)
- 
+    
+    if os.path.exists(output_path):
+        os.remove(output_path)
+    
     with evtx.Evtx(args.evtx) as log:
         with open(output_path, 'a') as f:  # Append mode if file already exists
-            print(e_views.XML_HEADER)
             f.write("[\n")  # Start of the JSON list, only if file is empty
             first_record = True
             for record in log.records():
@@ -35,7 +36,16 @@ def main():
                 json.dump(xmltodict.parse(record.xml()), f, indent=4)
                 first_record = False
             f.write("\n]")  # End of the JSON list
-        print("</Events>")
+
+        with open(output_path, 'r') as read_file:
+                logs_json = {
+                    "hostname": args.hostname,
+                    "username": args.username,
+                    "password": args.password,
+                    "application": json.loads(read_file.read())
+                }
+                with(open(output_path, 'w')) as write_file:
+                    json.dump(logs_json, write_file, indent=4)
  
 if __name__ == "__main__":
     main()
