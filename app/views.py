@@ -42,7 +42,8 @@ def upload():
     except Exception as e:
         flash(f'Invalid file format: {str(e)}')
         return redirect(url_for('main.home'))
- 
+
+
 @main.route('/upload_evtx', methods = ["POST"])
 def upload_evtx():
     try:
@@ -52,7 +53,7 @@ def upload_evtx():
         host_json_data = json.load(hostFile)
  
         # check if all required keys are present or not and only pass them and get logs and flag is false if there is already a EVTX File
-        result, new_unique_data, existing_data = host_verification(host_json_data, flag=False)
+        host_verification(host_json_data, flag=False)
  
         hostname=host_json_data["details"][0]['hostname']
         username=host_json_data["details"][0]['username']
@@ -86,12 +87,22 @@ def upload_evtx():
         with open(file_path, 'w') as file:
             file.write(file_contents)
 
-        if new_unique_data:
-            preprocess()
-            existing_data["details"].extend(host_json_data["details"])
+        # if not new_unique_data:
+        #     with open(file_path, 'r') as read_file:
+        #         logs_json = {
+        #             "hostname": hostname,
+        #             "username": username,
+        #             "password": password,
+        #             "application": json.loads(read_file.read())
+        #         }
+        #         with(open(file_path, 'w')) as write_file:
+        #             json.dump(logs_json, write_file, indent=4)
+
+        # if new_unique_data:
+        #     existing_data["details"].extend(host_json_data["details"])
  
-            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
-                json.dump(existing_data, f, indent=4)
+        #     with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
+        #         json.dump(existing_data, f, indent=4)
  
         with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
             return redirect(url_for('main.hosts'))
@@ -110,7 +121,7 @@ def hosts():
     except Exception as e:
         print(e)
  
- 
+
 @main.route('/getLog', methods=['POST'])
 def getLog():
     try:
@@ -129,6 +140,7 @@ def getLog():
     except Exception as e:
         error = f"Failed to connect to the Windows VM: {str(e)}"
         return render_template('logs.html', error=error)
+
 
 @main.route('/stream', methods=['POST'])
 def stream():
@@ -152,6 +164,7 @@ def stream():
 
     return Response(generate(), mimetype="text/event-stream")
 
+
 @main.route('/info', methods=['POST'])
 def info():
     hostname = request.form['hostname']
@@ -161,17 +174,17 @@ def info():
     file_name = f"{hostname}_{username}_{password}.json"
     file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR").replace("\\", "/"), file_name)
 
-    # with open(file_path, "r") as f:
-    #     data = json.load(f)
-    #     hostname = data['hostname']
-    #     username = data['username']
-    #     password = data['password']
+    with open(file_path, "r") as f:
+        data = json.load(f)
+        hostname = data['hostname']
+        username = data['username']
+        password = data['password']
 
-    #     total_events = data['application'][0]['Index']
-    #     unique_events = set()
+        total_events = data['application'][0]['Index']
+        unique_events = set()
 
-    #     for d in data['application']:
-    #         unique_events.add(d['EventID'])
+        for d in data['application']:
+            unique_events.add(d['EventID'])
 
 
     return render_template('info.html')

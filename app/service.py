@@ -6,15 +6,23 @@ from Evtx.Evtx import FileHeader
 from xml.etree.ElementTree import XML
 import datetime
 import re
+import subprocess
 
 def get_logs(hostname, username, password):
     try:
-        session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
-        app_logs_command = 'Get-EventLog -LogName Application | ConvertTo-Json -Depth 10 | Format-List'
-        
-        app_logs = session.run_ps(app_logs_command)
-
-        logs_output = app_logs.std_out.decode()
+        local_hostname = os.getenv('COMPUTERNAME')
+ 
+        if hostname == local_hostname:
+            # Fetch logs from the local machine
+            app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10'
+            result = subprocess.run(["powershell", "-Command", app_logs_command], capture_output=True, text=True)
+            logs_output = result.stdout
+        else:
+            # Fetch logs from the remote machine using WinRM
+            session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
+            app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10 | Format-List'
+            app_logs = session.run_ps(app_logs_command)
+            logs_output = app_logs.std_out.decode()
 
         try:
             logs_data = json.loads(logs_output)
@@ -49,6 +57,7 @@ def dump_json_file(json_data, dir_path, fileName):
     except Exception as e:
         print(e)
 
+
 def host_verification(new_data, flag):
     required_keys = {'hostname', 'username', 'password'}
     for item in new_data["details"]:
@@ -77,6 +86,7 @@ def host_verification(new_data, flag):
 
     return result, new_unique_data, existing_data
 
+
 def evtx_lookup_and_conversion(evtx_file, json_path):
     header = FileHeader(evtx_file, 0x0)
     events = []
@@ -96,36 +106,42 @@ def evtx_lookup_and_conversion(evtx_file, json_path):
     with open(json_path, "w") as json_file:
         json.dump(events, json_file, indent=4)
 
+
 def fetch_logs(hostname, username, password, last_fetched):
+    # Get the local machine's hostname
+    local_hostname = os.getenv('COMPUTERNAME')
 
     if last_fetched is not None:
         if type(last_fetched) is str:
             milliseconds = int(str(last_fetched).strip('/Date()').strip(')/'))
-            last_fetched = datetime.datetime.fromtimestamp(milliseconds / 1000.0)   
-
-    session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
+            last_fetched = datetime.datetime.fromtimestamp(milliseconds / 1000.0)  
     
-    # Adjust the PowerShell command to fetch logs since the last fetched timestamp if available
     if last_fetched:
-        ps_script = f"""
+            ps_script = f"""
             $last_fetched = [DateTime]::ParseExact('{last_fetched}', 'yyyy-MM-dd HH:mm:ss', $null)
-            Get-EventLog -LogName Application -After $last_fetched | 
-            ConvertTo-Json -Depth 5
-        """
-
+            Get-EventLog -LogName Application -After $last_fetched | ConvertTo-Json -Depth 5
+            """
     else:
         ps_script = """
                 Get-EventLog -LogName Application |
-                Select-Object -Property *, 
-                @{Name="TimeGeneratedReadable";Expression={($_.TimeGenerated).ToUniversalTime()}}, 
+                Select-Object -Property *,
+                @{Name="TimeGeneratedReadable";Expression={($_.TimeGenerated).ToUniversalTime()}},
                 @{Name="TimeWrittenReadable";Expression={($_.TimeWritten).ToUniversalTime()}} |
                 ConvertTo-Json -Depth 5 |
                 Format-List
                 """
-    
-    result = session.run_ps(ps_script)
-    if result.status_code == 0:
+            
+    if hostname == local_hostname:
+        result = subprocess.run(["powershell", "-Command", ps_script], capture_output=True, text=True)
+        logs_output = result.stdout
+ 
+    else:
+        # Fetch logs from the remote machine using WinRM
+        session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
+        result = session.run_ps(ps_script)
         logs_output = result.std_out.decode()
+
+    if result.status_code == 0:
         try:
             logs_data = json.loads(logs_output)
             # Update last_fetched to the most recent log entry time
@@ -139,12 +155,14 @@ def fetch_logs(hostname, username, password, last_fetched):
             return [], last_fetched
     else:
         return [], last_fetched
-    
+
+
 def convert_json_date_to_datetime(json_date):
-    # Extract milliseconds using a regular expression
     milliseconds = int(re.search(r'\d+', json_date).group())
+    
     # Convert milliseconds to a datetime object
     return datetime.datetime.fromtimestamp(milliseconds / 1000.0)
 
+## Yet to be done
 def preprocess(hostname, username, password, host_json_data, ):
     return host_json_data
