@@ -54,6 +54,36 @@
 
     winrm set winrm/config/service '@{AllowEncryption="true"}'
 
+# Retrieving Logs on Local Machines
+
+This section provides instructions on how to retrieve logs from local machines. The steps include fetching the username, hostname, and password, and adding them to a JSON file.
+
+## Steps
+
+1. **Get the Username**
+
+   Open Command Prompt and run the following commands to retrieve the current user's username and hostname on the Windows machine:
+
+   ```cmd
+   echo %USERNAME%
+   
+   hostname
+2. **Add it in the json file**
+
+   In the folder app/modelData/modeltest
+
+    ```json
+    {
+        "details": [
+            {
+                "hostname": "your-hostname-here",
+                "username": "your-username-here",
+                "password": "your-password-here"
+            }
+        ]
+    }
+    
+
 https://www.hurryupandwait.io/blog/understanding-and-troubleshooting-winrm-connection-and-authentication-a-thrill-seekers-guide-to-adventure
 
 https://pitstop.manageengine.com/portal/en/kb/articles/troubleshooting-winrm-errors#ErrorA_specified_logon_session_does_not_exist_It_may_already_have_been_terminated
