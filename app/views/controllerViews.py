@@ -1,20 +1,22 @@
 from flask import Blueprint, render_template, request, url_for, redirect, flash
-from requests.exceptions import RequestException
 import json
 import os
 from dotenv import load_dotenv
 import subprocess
 import time
 from flask import Response
-from app.service import host_verification, fetch_logs, preprocess
+from app.service.controllerService import host_verification, fetch_logs, preprocess
 import platform
+from datetime import datetime
+import re
+from app.service.modelService import add_machine_and_event
 load_dotenv()
 
 main = Blueprint('main', __name__)
 main.secret_key = "0k:(7o%MZ|SD/Qw.L21dWJ9BY@}%QX"
 
 
-@main.route('/')
+@main.route('/home')
 def home():
     return render_template('home.html')
  
@@ -26,13 +28,19 @@ def upload():
         new_data = json.load(hostFile)
  
         # check if all required keys are present or not and only pass them and get logs and flag is true if just hostdetails
-        result, new_unique_data, existing_data = host_verification(new_data, flag=True)
+        result, new_unique_data, existing_data, all_logs = host_verification(new_data, flag=True)
  
         if result == "false":
             return redirect(url_for('main.main'))
  
         if new_unique_data:
             existing_data["details"].extend(new_data["details"])
+            hostname = all_logs['hostname']
+            username = all_logs['username']
+            password = all_logs['password']
+            application = all_logs['application']
+
+            add_machine_and_event(hostname, username, password, application)
  
             with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
                 json.dump(existing_data, f, indent=4)
@@ -86,23 +94,6 @@ def upload_evtx():
         # Write the modified contents back to the file
         with open(file_path, 'w') as file:
             file.write(file_contents)
-
-        # if not new_unique_data:
-        #     with open(file_path, 'r') as read_file:
-        #         logs_json = {
-        #             "hostname": hostname,
-        #             "username": username,
-        #             "password": password,
-        #             "application": json.loads(read_file.read())
-        #         }
-        #         with(open(file_path, 'w')) as write_file:
-        #             json.dump(logs_json, write_file, indent=4)
-
-        # if new_unique_data:
-        #     existing_data["details"].extend(host_json_data["details"])
- 
-        #     with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
-        #         json.dump(existing_data, f, indent=4)
  
         with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
             return redirect(url_for('main.hosts'))
@@ -142,15 +133,18 @@ def getLog():
         return render_template('logs.html', error=error)
 
 
-@main.route('/stream', methods=['POST'])
-def stream():
-    hostname = request.form['hostname']
-    username = request.form['username']
-    password = request.form['password']
+
+@main.route('/liveLogs', methods=['GET'])
+def liveLogs():
+    # Get credentials from the query string
+    hostname = request.args.get('hostname')
+    username = request.args.get('username')
+    password = request.args.get('password')
 
     def generate():
         last_fetched = None  
         all_logs = [] 
+        log_counts = [0, 0, 0, 0, 0]  # assuming log levels range from 0 to 4
         while True:
             # Fetch new logs and update the last fetched timestamp
             new_logs, last_fetched = fetch_logs(hostname, username, password, last_fetched)
@@ -158,11 +152,29 @@ def stream():
                 if not all_logs:
                     all_logs.extend(new_logs)
                 else:
-                    all_logs.append(new_logs) 
-                yield f"data: {json.dumps(all_logs, indent=4, sort_keys=True)}\n\n"
+                    if 'Level' in new_logs:
+                        all_logs.append(new_logs) 
+                    else:
+                        all_logs.extend(new_logs)
+
+                if 'Level' in new_logs:
+                    level = new_logs.get('Level', 0)  
+                    if 0 <= level < len(log_counts):
+                        log_counts[level] += 1
+                else:
+                    for log in new_logs:
+                        level = log.get('Level', 0)
+                        if 0 <= level < len(log_counts):
+                            log_counts[level] += 1
+
+                yield f"data: {json.dumps({'counts': log_counts})}\n\n"
             time.sleep(15)
 
     return Response(generate(), mimetype="text/event-stream")
+
+@main.route('/stream', methods=['POST'])
+def stream():
+    return render_template('liveLogs.html', form_data=request.form)
 
 
 @main.route('/info', methods=['POST'])

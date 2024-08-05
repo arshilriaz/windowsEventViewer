@@ -4,47 +4,91 @@ import winrm
 import json
 from Evtx.Evtx import FileHeader
 from xml.etree.ElementTree import XML
-import datetime
+from datetime import datetime
 import re
 import subprocess
 
 def get_logs(hostname, username, password):
     try:
         local_hostname = os.getenv('COMPUTERNAME')
- 
+       
         if hostname == local_hostname:
             # Fetch logs from the local machine
-            app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10'
+            app_logs_command = 'Get-WinEvent -LogName Application | ConvertTo-Json'
             result = subprocess.run(["powershell", "-Command", app_logs_command], capture_output=True, text=True)
             logs_output = result.stdout
         else:
             # Fetch logs from the remote machine using WinRM
             session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
-            app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10 | Format-List'
+            app_logs_command = 'Get-WinEvent -LogName Application | ConvertTo-Json'
             app_logs = session.run_ps(app_logs_command)
             logs_output = app_logs.std_out.decode()
-
+ 
         try:
             logs_data = json.loads(logs_output)
         except json.JSONDecodeError as e:
             print(e)
             logs_data = logs_output
-        
+       
+        # Process the logs_data into the desired format
+        processed_logs = []
+        for log in logs_data:
+            event_xml = {
+                "Event": {
+                    "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                    "System": {
+                        "Provider": {
+                            "@Name": log.get("ProviderName"),
+                            "@Guid": log.get("ProviderId")
+                        },
+                        "EventID": {
+                            "@Qualifiers": log.get("Qualifiers"),
+                            "#text": log.get("Id")
+                        },
+                        "Version": log.get("Version"),
+                        "Level": log.get("Level"),
+                        "Task": log.get("Task"),
+                        "Opcode": log.get("Opcode"),
+                        "Keywords": log.get("Keywords"),
+                        "TimeCreated": {
+                            "@SystemTime": datetime.fromtimestamp(int(log['TimeCreated'].strip('/Date()')) / 1000).isoformat() + 'Z'
+
+                        },
+                        "EventRecordID": str(log.get("RecordId")),
+                        "Correlation": {},
+                        "Execution": {
+                            "@ProcessID": log.get("ProcessId"),
+                            "@ThreadID": log.get("ThreadId"),
+                        },
+                        "Channel": log.get("LogName"),
+                        "Computer": log.get("MachineName"),
+                        "Security": {
+                            "@UserID": log.get("UserId")
+                        }
+                    },
+                    "EventData": {
+                        "Data": log.get("Properties", [])
+                    }
+                }
+            }
+
+            processed_logs.append(event_xml)
+       
         logs_json = {
             "hostname": hostname,
             "username": username,
             "password": password,
-            "application": logs_data,
+            "application": processed_logs
         }
-
+ 
         file_path = os.getenv("MODEL_OUTPUT_DIR")
         file_name = f"{hostname}_{username}_{password}.json"
-
+ 
         dump_json_file(logs_json, file_path, file_name)
-        return "true"
-        
+        return "true", logs_json
+       
     except Exception as e:
-        print(f"Failed to connect to the Windows VM: {str(e)}")
+        print(f"Failed to retrieve logs: {str(e)}")
         return "false"
     
     
@@ -80,11 +124,11 @@ def host_verification(new_data, flag):
 
     if flag:
         # To get the logs
-        result = get_logs(hostname, username, password)
+        result, all_logs = get_logs(hostname, username, password)
     else:
         result = "true"
 
-    return result, new_unique_data, existing_data
+    return result, new_unique_data, existing_data, all_logs
 
 
 def evtx_lookup_and_conversion(evtx_file, json_path):
@@ -112,23 +156,30 @@ def fetch_logs(hostname, username, password, last_fetched):
     local_hostname = os.getenv('COMPUTERNAME')
 
     if last_fetched is not None:
+        # if type(last_fetched) is str:
+        #     milliseconds = int(str(last_fetched).strip('/Date()').strip(')/'))
+        #     last_fetched = datetime.fromtimestamp(milliseconds / 1000.0)  
+        # if last_fetched:
         if type(last_fetched) is str:
             milliseconds = int(str(last_fetched).strip('/Date()').strip(')/'))
-            last_fetched = datetime.datetime.fromtimestamp(milliseconds / 1000.0)  
-    
-    if last_fetched:
-            ps_script = f"""
-            $last_fetched = [DateTime]::ParseExact('{last_fetched}', 'yyyy-MM-dd HH:mm:ss', $null)
-            Get-EventLog -LogName Application -After $last_fetched | ConvertTo-Json -Depth 5
-            """
+            last_fetched = datetime.fromtimestamp(milliseconds / 1000.0)
+
+            strict_milliseconds = milliseconds + 1
+            strict_last_fetched = datetime.fromtimestamp(strict_milliseconds / 1000.0)
+        
+        else:
+            strict_milliseconds = int(last_fetched.timestamp() * 1000)
+            strict_last_fetched = datetime.fromtimestamp(strict_milliseconds / 1000.0)
+
+
+        ps_script = f"""
+        $date_fetched = [DateTime]::ParseExact('{str(strict_last_fetched)}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
+        Get-WinEvent -FilterHashtable @{{LogName = 'Application'; StartTime = $date_fetched}} | ConvertTo-Json -Depth 5
+        """
+            
     else:
         ps_script = """
-                Get-EventLog -LogName Application |
-                Select-Object -Property *,
-                @{Name="TimeGeneratedReadable";Expression={($_.TimeGenerated).ToUniversalTime()}},
-                @{Name="TimeWrittenReadable";Expression={($_.TimeWritten).ToUniversalTime()}} |
-                ConvertTo-Json -Depth 5 |
-                Format-List
+                Get-WinEvent -LogName Application | ConvertTo-Json
                 """
             
     if hostname == local_hostname:
@@ -146,10 +197,10 @@ def fetch_logs(hostname, username, password, last_fetched):
             logs_data = json.loads(logs_output)
             # Update last_fetched to the most recent log entry time
             if logs_data:
-                if "Index" in logs_data:
-                    last_fetched = logs_data['TimeGenerated']
+                if "TimeCreated" in logs_data:
+                    last_fetched = logs_data['TimeCreated']
                 else:
-                    last_fetched = logs_data[0]['TimeGenerated']
+                    last_fetched = logs_data[0]['TimeCreated']
             return logs_data, last_fetched
         except json.JSONDecodeError:
             return [], last_fetched

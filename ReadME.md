@@ -9,16 +9,29 @@
     
     pip install python-evtx
 
+    pip3 install xmltodict
+
+    pip install Flask Flask-SQLAlchemy
+
+    pip install flask-restx
+
+    pip install Flask-Migrate
+
     winrm set winrm/config/service/auth '@{Basic="true"}'
 
     winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 
 ## Env SetUP
     python3 -m venv venv
+
     source venv/bin/activate  # On macOS or Linux
 
 
 ## To run the app in normal Flask buit-in Server
+    flask db migrate -m "Updated User model"
+
+    flask db upgrade
+
     python run.py
     http://127.0.0.1:5000/
 
@@ -70,7 +83,7 @@ This section provides instructions on how to retrieve logs from local machines. 
    hostname
 2. **Add it in the json file**
 
-   In the folder app/modelData/modeltest
+   In the folder app/data/modeltest
 
     ```json
     {

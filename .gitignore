@@ -2,5 +2,8 @@ venv
 __pycache__/
 .vscode
 app/__pycache__/
-app/modelData/modelOutput/
-app/modelData/modelInput/
+app/data/outputData/
+app/data/inputData/
+app/models/__pycache__/
+app/service/__pycache__/
+app/views/__pycache__/
