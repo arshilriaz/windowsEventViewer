@@ -135,8 +135,9 @@ def getLog():
         with open(file_path, "r") as f:
             log_data = json.load(f)
             log_output = json.dumps(log_data, indent=4)
+            log_values = log_data['application']
  
-        return render_template('logs.html', logs=log_output)
+        return render_template('logs.html', logs=log_output, log_values = log_values)
     except Exception as e:
         error = f"Failed to connect to the Windows VM: {str(e)}"
         return render_template('logs.html', error=error)

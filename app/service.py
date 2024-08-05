@@ -8,10 +8,49 @@ import datetime
 import re
 import subprocess
 
+# def get_logs(hostname, username, password):
+    # try:
+    #     local_hostname = os.getenv('COMPUTERNAME')
+ 
+    #     if hostname == local_hostname:
+    #         # Fetch logs from the local machine
+    #         app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10'
+    #         result = subprocess.run(["powershell", "-Command", app_logs_command], capture_output=True, text=True)
+    #         logs_output = result.stdout
+    #     else:
+    #         # Fetch logs from the remote machine using WinRM
+    #         session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
+    #         app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10 | Format-List'
+    #         app_logs = session.run_ps(app_logs_command)
+    #         logs_output = app_logs.std_out.decode()
+
+    #     try:
+    #         logs_data = json.loads(logs_output)
+    #     except json.JSONDecodeError as e:
+    #         print(e)
+    #         logs_data = logs_output
+        
+    #     logs_json = {
+    #         "hostname": hostname,
+    #         "username": username,
+    #         "password": password,
+    #         "application": logs_data,
+    #     }
+
+    #     file_path = os.getenv("MODEL_OUTPUT_DIR")
+    #     file_name = f"{hostname}_{username}_{password}.json"
+
+    #     dump_json_file(logs_json, file_path, file_name)
+    #     return "true"
+        
+    # except Exception as e:
+    #     print(f"Failed to connect to the Windows VM: {str(e)}")
+    #     return "false"
+    
 def get_logs(hostname, username, password):
     try:
         local_hostname = os.getenv('COMPUTERNAME')
- 
+        
         if hostname == local_hostname:
             # Fetch logs from the local machine
             app_logs_command = 'Get-EventLog -LogName Application | Select-Object -Property * | ConvertTo-Json -Depth 10'
@@ -30,11 +69,56 @@ def get_logs(hostname, username, password):
             print(e)
             logs_data = logs_output
         
+        # Process the logs_data into the desired format
+        processed_logs = []
+        for log in logs_data:
+            entry_type = str(log.get("EntryType"))
+            if entry_type == '2':
+                entry_type = '3'
+            elif entry_type == '1':
+                entry_type = '2'
+            event_xml = {
+                "Event": {
+                    "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                    "System": {
+                        "Provider": {
+                            "@Name": log.get("Source"),
+                            "@Guid": log.get("ProviderGuid", "")  # Including GUID if available
+                        },
+                        "EventID": {
+                            "@Qualifiers": "0",  # Placeholder if Qualifiers is not available
+                            "#text": str(log.get("EventID"))
+                        },
+                        "Version": "0",  # Placeholder if Version is not available
+                        "Level": str(entry_type),
+                        "Task": "0",  # Placeholder if Task is not available
+                        "Opcode": "0",  # Placeholder if Opcode is not available
+                        "Keywords": "0x80000000000000",  # Example Keywords
+                        "TimeCreated": {
+                            "@SystemTime": log.get("TimeGenerated")
+                        },
+                        "EventRecordID": str(log.get("Index")),
+                        "Correlation": {},
+                        "Execution": {
+                            "@ProcessID": "0",  # Placeholder if ProcessID is not available
+                            "@ThreadID": "0"  # Placeholder if ThreadID is not available
+                        },
+                        "Channel": log.get("Category"),
+                        "Computer": log.get("MachineName"),
+                        "Security": {}
+                    },
+                    "EventData": {
+                        "Data": log.get("ReplacementStrings", [])
+                    }
+                }
+            }
+            processed_logs.append(event_xml)
+        
         logs_json = {
             "hostname": hostname,
             "username": username,
             "password": password,
-            "application": logs_data,
+            "application": processed_logs
         }
 
         file_path = os.getenv("MODEL_OUTPUT_DIR")
@@ -44,10 +128,9 @@ def get_logs(hostname, username, password):
         return "true"
         
     except Exception as e:
-        print(f"Failed to connect to the Windows VM: {str(e)}")
+        print(f"Failed to retrieve logs: {str(e)}")
         return "false"
-    
-    
+
 def dump_json_file(json_data, dir_path, fileName):
     try:
         file_path = os.path.join(dir_path, fileName)

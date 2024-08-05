@@ -19,6 +19,11 @@
             "hostname": "192.168.8.145",
             "username": "arshi",
             "password": "040898"
+        },
+        {
+            "hostname": "LAPTOP-RA1HU9JB",
+            "username": "arshi",
+            "password": "040898"
         }
     ]
 }
