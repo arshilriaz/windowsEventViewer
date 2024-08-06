@@ -33,6 +33,11 @@ def get_logs(hostname, username, password):
         # Process the logs_data into the desired format
         processed_logs = []
         for log in logs_data:
+            entry_type = str(log.get("Level"))
+            if entry_type == '2':
+                entry_type = '3'
+            elif entry_type == '1':
+                entry_type = '2'
             event_xml = {
                 "Event": {
                     "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
@@ -46,6 +51,7 @@ def get_logs(hostname, username, password):
                             "#text": log.get("Id")
                         },
                         "Version": log.get("Version"),
+                        "Level": str(entry_type),
                         "Source": (
                             "Critical" if log.get("Level") == 0 else
                             "Warning" if log.get("Level") == 1 else
@@ -110,6 +116,7 @@ def dump_json_file(json_data, dir_path, fileName):
 
 def host_verification(new_data, flag):
     required_keys = {'hostname', 'username', 'password'}
+
     for item in new_data["details"]:
         if not required_keys.issubset(item):
             raise ValueError('Missing required keys in Input JSON File')
@@ -133,6 +140,7 @@ def host_verification(new_data, flag):
         result, all_logs = get_logs(hostname, username, password)
     else:
         result = "true"
+        all_logs = []
 
     return result, new_unique_data, existing_data, all_logs
 

@@ -26,6 +26,7 @@ def upload():
     try:
         hostFile = request.files['file']
         new_data = json.load(hostFile)
+        new_data["details"] = [{**entry, 'evtx': False} for entry in new_data["details"]]
  
         # check if all required keys are present or not and only pass them and get logs and flag is true if just hostdetails
         result, new_unique_data, existing_data, all_logs = host_verification(new_data, flag=True)
@@ -59,9 +60,10 @@ def upload_evtx():
         evtxFile = request.files['evtxfile']
        
         host_json_data = json.load(hostFile)
+        host_json_data["details"] = [{**entry, 'evtx': True} for entry in host_json_data["details"]]
  
         # check if all required keys are present or not and only pass them and get logs and flag is false if there is already a EVTX File
-        host_verification(host_json_data, flag=False)
+        result, new_unique_data, existing_data, all_logs = host_verification(host_json_data, flag=False)
  
         hostname=host_json_data["details"][0]['hostname']
         username=host_json_data["details"][0]['username']
@@ -94,6 +96,12 @@ def upload_evtx():
         # Write the modified contents back to the file
         with open(file_path, 'w') as file:
             file.write(file_contents)
+
+        if new_unique_data:
+            existing_data["details"].extend(host_json_data["details"])
+ 
+            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
+                json.dump(existing_data, f, indent=4)
  
         with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
             return redirect(url_for('main.hosts'))
@@ -126,13 +134,13 @@ def getLog():
         with open(file_path, "r") as f:
             log_data = json.load(f)
             log_output = json.dumps(log_data, indent=4)
+            log_values = log_data['application']
  
-        return render_template('logs.html', logs=log_output)
+        return render_template('seeLogs/seeLogs.html', logs=log_output, log_values = log_values)
     except Exception as e:
         error = f"Failed to connect to the Windows VM: {str(e)}"
-        return render_template('logs.html', error=error)
-
-
+        return render_template('seeLogs/seeLogs.html', error=error)
+    
 
 @main.route('/liveLogs', methods=['GET'])
 def liveLogs():
