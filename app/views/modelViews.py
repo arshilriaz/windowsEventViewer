@@ -54,13 +54,7 @@ def add_events():
         Event(
             machine_id = event['machine_id'],
             event_id = event['Event']['System']['EventID']['#text'],
-            level = (
-                "Critical" if event['Event']['System']['Level'] == 0 else
-                "Warning" if event['Event']['System']['Level'] == 1 else
-                "Verbose" if event['Event']['System']['Level'] == 2 else
-                "Error" if event['Event']['System']['Level'] == 3 else
-                "Information"
-            ),
+            source = event['Event']['System']['Source'],
             event_source_name = event['Event']['System']['Provider']['@Name'],
             time_created = event['Event']['System']['TimeCreated']['@SystemTime']
         ) for event in data['events']

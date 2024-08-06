@@ -46,7 +46,13 @@ def get_logs(hostname, username, password):
                             "#text": log.get("Id")
                         },
                         "Version": log.get("Version"),
-                        "Level": log.get("Level"),
+                        "Source": (
+                            "Critical" if log.get("Level") == 0 else
+                            "Warning" if log.get("Level") == 1 else
+                            "Verbose" if log.get("Level") == 2 else
+                            "Error" if log.get("Level") == 3 else
+                            "Information"
+                        ),
                         "Task": log.get("Task"),
                         "Opcode": log.get("Opcode"),
                         "Keywords": log.get("Keywords"),

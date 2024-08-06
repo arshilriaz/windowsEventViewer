@@ -158,26 +158,26 @@ def liveLogs():
                     else:
                         all_logs.extend(new_logs)
 
+                # If new log only has one event it is opening up, so if only one case needs this.
                 if 'Level' in new_logs:
+                    # Number of events per level calculation
                     level = new_logs.get('Level', 0)  
                     if 0 <= level < len(log_counts):
                         log_counts[level] += 1
+
+                    # Filtering number of events for past 5 years
+                    timestamp = log.get('TimeCreated')
+                    year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
+                    if year in year_counts:
+                        year_counts[year] += 1
+
+                # If multiple logs present do iteration
                 else:
                     for log in new_logs:
                         level = log.get('Level', 0)
                         if 0 <= level < len(log_counts):
                             log_counts[level] += 1
-
-                if 'TimeCreated' in new_logs:
-                    # Extract year from timestamp
-                    timestamp = log.get('TimeCreated')
-                    year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
-                    if year in year_counts:
-                        year_counts[year] += 1
-                    
-                else:
-                    for log in new_logs:
-                        # Extract year from timestamp
+                        
                         timestamp = log.get('TimeCreated')
                         year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
                         if year in year_counts:
