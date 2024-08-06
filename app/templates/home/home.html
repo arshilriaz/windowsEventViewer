@@ -3,25 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/templates/home/home.css">
+    <link rel="stylesheet" href="/templates/style.css">
     <title>Upload JSON</title>
-    <style>
-        input[type="file"] {
-            height: 40px;
-            line-height: 40px;
-            border: 1px solid #999;
-        }
-        .labels{
-            display: table-cell;
-        }
-        button {
-            line-height: 14px;
-            width: 120px;
-            font-size: 10pt;
-            color: blue;
-        }
-    </style>
 </head>
 <body>
+
+    <a href="hosts">
+        <button>See All Hosts</button>
+    </a>
 
     <h1>Upload Host Data</h1>
     <form action="{{ url_for('main.upload') }}" method = "post" enctype="multipart/form-data">
@@ -48,11 +38,6 @@
         <br><br>
         <input type = "submit" value = "upload">
     </form>
-
-    <br><br>
-    <a href="hosts">
-        <button>See All Hosts</button>
-    </a>
 
 </body>
 </html>

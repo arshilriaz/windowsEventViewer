@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='templates')
     app.secret_key = "0k:(7o%MZ|SD/Qw.L21dWJ9BY@}%QX"
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:3855@localhost/llmDB'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

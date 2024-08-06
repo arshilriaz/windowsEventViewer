@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Level Graph</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3"></script>
+    <link rel="stylesheet" href="/templates/liveLogs/liveLogs.css">
+</head>
+<body>
+    <div class="status-summary">
+        <div class="status-item">
+            <i class="fas fa-radiation" title="Critical"></i> 
+            <div class="status-info">
+                <span class="status-count">0</span>
+                <span class="status-label">Critical</span>
+            </div>
+        </div>
+
+        <div class="status-item">
+            <i class="fa fa-exclamation-triangle" title="Warning"></i>
+            <div class="status-info">
+                <span class="status-count">0</span>
+                <span class="status-label">Warning</span>
+            </div>
+        </div>
+
+        <div class="status-item">
+            <i class="fas fa-comments" title="Verbose"></i>
+            <div class="status-info">
+                <span class="status-count">0</span>
+                <span class="status-label">Verbose</span>
+            </div>
+        </div>
+
+        <div class="status-item">
+            <i class="fa fa-bug" title="Error"></i>
+            <div class="status-info">
+                <span class="status-count">0</span>
+                <span class="status-label">Error</span>
+            </div>
+        </div>
+
+        <div class="status-item">
+            <i class="fa fa-info-circle" title="Information"></i>
+            <div class="status-info">
+                <span class="status-count">0</span>
+                <span class="status-label">Information</span>
+            </div>
+        </div>
+        <!-- Add additional status items here -->
+    </div>
+
+    <div class="main-container">
+        <div class="chart-container">
+            <h2>Windows Severity Events</h2>
+            <canvas id="logChart1", style="border:0.5px solid #000000;"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Logs Trend Distribution for last 5 Years</h2>
+            <canvas id="logChart2", style="border:0.5px solid #000000;"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Another Graph Title</h2>
+            <canvas id="logChart2", style="border:0.5px solid #000000;"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <h2>Logs Trend Distribution for today</h2>
+            <canvas id="logChart1", style="border:0.5px solid #000000;"></canvas>
+        </div>
+    </div>
+
+    <div id="formData" 
+         data-hostname="{{ form_data['hostname'] }}"
+         data-username="{{ form_data['username'] }}"
+         data-password="{{ form_data['password'] }}"
+         style="display:none;"></div>
+
+         <script src="/templates/liveLogs/liveLogs.js"></script>
+        
+</body>
+</html>

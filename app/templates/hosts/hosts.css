@@ -1,0 +1,36 @@
+table {
+    width:50%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td{
+    padding: 15px;
+    text-align: left;
+}
+th{
+    background-color: #f2f2f2;
+}
+input{
+    display: center;
+    width:150px;
+    margin:auto;
+    justify-content: center;
+    align-items: center;  
+}
+
+a{
+    margin-left: 90%;
+    color: blue;
+}
+
+.divider{
+    width:2px;
+    height:1px;
+    display:inline-block;
+}
+
+.buttons{
+    flex-direction: row;
+}

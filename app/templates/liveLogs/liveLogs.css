@@ -1,0 +1,30 @@
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.chart-container {
+    flex: 1 1 50%; /* Take up 50% of the flex container's width */
+    padding: 10px;
+    box-sizing: border-box;
+}
+canvas {
+    width: 90% !important; /* Full width of the container */
+    height: 90% !important; /* Full height of the container, adjusted to maintain aspect ratio */
+}
+.status-summary {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.status-info {
+    text-align: center;
+}

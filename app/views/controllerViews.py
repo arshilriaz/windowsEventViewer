@@ -18,7 +18,7 @@ main.secret_key = "0k:(7o%MZ|SD/Qw.L21dWJ9BY@}%QX"
 
 @main.route('/home')
 def home():
-    return render_template('home.html')
+    return render_template('home/home.html')
  
  
 @main.route('/upload', methods = ['POST'])
@@ -100,7 +100,7 @@ def upload_evtx():
        
     except Exception as e:
         print(e)
-        return render_template('home.html')
+        return render_template('home/home.html')
  
    
 @main.route('/hosts')
@@ -108,7 +108,7 @@ def hosts():
     try:
         with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
             hosts = json.load(f)
-            return render_template('hosts.html', hosts=hosts)
+            return render_template('hosts/hosts.html', hosts=hosts)
     except Exception as e:
         print(e)
  
@@ -144,6 +144,7 @@ def liveLogs():
     def generate():
         last_fetched = None  
         all_logs = [] 
+        year_counts = {str(year): 0 for year in range(datetime.now().year - 4, datetime.now().year + 1)}
         log_counts = [0, 0, 0, 0, 0]  # assuming log levels range from 0 to 4
         while True:
             # Fetch new logs and update the last fetched timestamp
@@ -167,36 +168,26 @@ def liveLogs():
                         if 0 <= level < len(log_counts):
                             log_counts[level] += 1
 
-                yield f"data: {json.dumps({'counts': log_counts})}\n\n"
+                if 'TimeCreated' in new_logs:
+                    # Extract year from timestamp
+                    timestamp = log.get('TimeCreated')
+                    year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
+                    if year in year_counts:
+                        year_counts[year] += 1
+                    
+                else:
+                    for log in new_logs:
+                        # Extract year from timestamp
+                        timestamp = log.get('TimeCreated')
+                        year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
+                        if year in year_counts:
+                            year_counts[year] += 1
+
+                yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts})}\n\n"
             time.sleep(15)
 
     return Response(generate(), mimetype="text/event-stream")
 
 @main.route('/stream', methods=['POST'])
 def stream():
-    return render_template('liveLogs.html', form_data=request.form)
-
-
-@main.route('/info', methods=['POST'])
-def info():
-    hostname = request.form['hostname']
-    username = request.form['username']
-    password = request.form['password']
-
-    file_name = f"{hostname}_{username}_{password}.json"
-    file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR").replace("\\", "/"), file_name)
-
-    with open(file_path, "r") as f:
-        data = json.load(f)
-        hostname = data['hostname']
-        username = data['username']
-        password = data['password']
-
-        total_events = data['application'][0]['Index']
-        unique_events = set()
-
-        for d in data['application']:
-            unique_events.add(d['EventID'])
-
-
-    return render_template('info.html')
+    return render_template('liveLogs/liveLogs.html', form_data=request.form)
