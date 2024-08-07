@@ -197,8 +197,10 @@ def fetch_logs(hostname, username, password, last_fetched):
                 """
             
     if hostname == local_hostname:
-        result = subprocess.run(["powershell", "-Command", ps_script], capture_output=True, text=True)
+        app_logs_command = 'Get-WinEvent -LogName Application | ConvertTo-Json'
+        result = subprocess.run(["powershell", "-Command", app_logs_command], capture_output=True, text=True)
         logs_output = result.stdout
+        result.status_code = 0
  
     else:
         # Fetch logs from the remote machine using WinRM

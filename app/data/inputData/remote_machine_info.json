@@ -1,0 +1,34 @@
+{
+    "details": [
+        {
+            "hostname": "192.168.64.3",
+            "username": "Rohith",
+            "password": "3855",
+            "evtx": false
+        },
+        {
+            "hostname": "192.168.64.3",
+            "username": "Rohith",
+            "password": "385",
+            "evtx": true
+        },
+        {
+            "hostname": "172.20.10.4",
+            "username": "rohan",
+            "password": "1273",
+            "evtx": true
+        },
+        {
+            "hostname": "LAPTOP-RA1HU9JB",
+            "username": "arshi",
+            "password": "040898",
+            "evtx": false
+        },
+        {
+            "hostname": "LAPTOP-RA1HU9JB",
+            "username": "arshi",
+            "password": "040898",
+            "evtx": true
+        }
+    ]
+}
