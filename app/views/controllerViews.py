@@ -7,7 +7,7 @@ import time
 from flask import Response
 from app.service.controllerService import host_verification, fetch_logs, preprocess
 import platform
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 from app.service.modelService import add_machine_and_event
 load_dotenv()
@@ -150,10 +150,14 @@ def liveLogs():
     password = request.args.get('password')
 
     def generate():
+
         last_fetched = None  
         all_logs = [] 
         year_counts = {str(year): 0 for year in range(datetime.now().year - 4, datetime.now().year + 1)}
         log_counts = [0, 0, 0, 0, 0]  # assuming log levels range from 0 to 4
+        name_counts = {}  # Dictionary to track the count of each name
+        tf_hour_counts = {i: 0 for i in range(24)}
+
         while True:
             # Fetch new logs and update the last fetched timestamp
             new_logs, last_fetched = fetch_logs(hostname, username, password, last_fetched)
@@ -179,6 +183,17 @@ def liveLogs():
                     if year in year_counts:
                         year_counts[year] += 1
 
+                    name = log.get('ProviderName')
+                    if name:
+                        name_counts[name] = name_counts.get(name, 0) + 1
+
+                    # Update six-hour counts
+                    log_time = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000)
+                    if datetime.now() - log_time < timedelta(hours=24):
+                        hour_delta = (datetime.now() - log_time).total_seconds() // 3600
+                        if hour_delta in tf_hour_counts:
+                            tf_hour_counts[int(hour_delta)] += 1
+
                 # If multiple logs present do iteration
                 else:
                     for log in new_logs:
@@ -191,7 +206,18 @@ def liveLogs():
                         if year in year_counts:
                             year_counts[year] += 1
 
-                yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts})}\n\n"
+                        # Update six-hour counts
+                        log_time = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000)
+                        if datetime.now() - log_time < timedelta(hours=24):
+                            hour_delta = (datetime.now() - log_time).total_seconds() // 3600
+                            if hour_delta in tf_hour_counts:
+                                tf_hour_counts[int(hour_delta)] += 1
+
+                        name = log.get('ProviderName')
+                        if name:
+                            name_counts[name] = name_counts.get(name, 0) + 1
+
+                yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts})}\n\n"
             time.sleep(15)
 
     return Response(generate(), mimetype="text/event-stream")

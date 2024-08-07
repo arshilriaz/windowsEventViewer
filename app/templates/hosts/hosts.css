@@ -1,36 +1,134 @@
+main-header {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left:1330px;
+    margin-top:15px;
+}
+
+h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2em;
+    color: #333;
+    margin: 0;
+    margin-left:245px;
+}
+
 table {
-    width:50%;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #ddd;
 }
-th, td{
-    padding: 15px;
+
+th, td {
+    padding: 12px 15px;
     text-align: left;
 }
-th{
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+tr {
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-input{
-    display: center;
-    width:150px;
-    margin:auto;
-    justify-content: center;
-    align-items: center;  
+
+tr:hover {
+    background-color: #f1f1f1;
 }
 
-a{
-    margin-left: 90%;
-    color: blue;
+.input-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.divider{
-    width:2px;
-    height:1px;
-    display:inline-block;
+.input-submit:hover {
+    background-color: #45a049;
 }
 
-.buttons{
+a {
+    text-decoration: none;
+}
+
+.divider {
+    width: 10px;
+    display: inline-block;
+}
+
+.buttons {
+    display: flex;
     flex-direction: row;
+    justify-content: space-around;
+}
+
+.button-theme {
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-theme:hover {
+    background-color: white;
+    color: #4CAF50;
+}
+
+.action-button {
+    background-color: #2196F3;
+    color: white;
+    border: 1px solid #2196F3;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: white;
+    color: #2196F3;
+    border: 1px solid #2196F3;
 }

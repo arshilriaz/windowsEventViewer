@@ -8,10 +8,15 @@
     </head>
 
     <body>
-        <a href="home">
-            <button>Add New Data +</button>
-        </a>
+        <div class="header">
+            <a href="home">
+                <button class="button-theme">Add New Data</button>
+            </a>
+        </div>
+
         <h1>Hosts Data</h1>
+        <br><br>
+        
         <table>
             <tr>
                 <th>Hostname</th>
@@ -29,27 +34,25 @@
                                 <input type="hidden" name="hostname" value="{{ host['hostname'] }}">
                                 <input type="hidden" name="username" value="{{ host['username'] }}">
                                 <input type="hidden" name="password" value="{{ host['password'] }}">
-                                <input type="submit" value="See Logs">
+                                <input type="submit" value="See Logs" class="action-button">
                             </form> 
                         </div>
-
-                        <div class="divider"></div>
-
+                    
                         {% if not host.evtx %}
                         <div class="button">
                             <form action="{{ url_for('main.stream') }}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="hostname" value="{{ host['hostname'] }}">
                                 <input type="hidden" name="username" value="{{ host['username'] }}">
                                 <input type="hidden" name="password" value="{{ host['password'] }}">
-                                <input type="submit" value="Live Logs">
+                                <input type="submit" value="Live Logs" class="action-button">
                             </form> 
                         </div>
                         {% endif %}
-                    </div>                 
+                    </div>
+                              
                 </td>
             </tr>
             {% endfor %}
-
         </table>
     </body>
 </html>
