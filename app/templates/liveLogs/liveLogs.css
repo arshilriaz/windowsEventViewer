@@ -2,4 +2,74 @@
     padding: 10px; /* Adjust padding inside the card body */
 }
 
+/* Make the log details header and filter sticky */
+.card-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+    padding-right: 100px;
+}
 
+/* Keep the log details text fixed while scrolling */
+#log-details:hover .card-title {
+    display: inline-block;
+    margin: 0;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.card-title {
+    font-size: xx-large;
+}
+
+#timeFilter {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.small-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Change cursor to hand icon */
+}
+
+.small-box:hover {
+    transform: scale(1.05); /* Slightly enlarges the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
+    background-color: #007bff; /* Change this to any color you prefer */
+    color: #fff;
+}
+
+.small-box:hover .inner h3,
+.small-box:hover .inner p {
+    color: #fff; /* Changes text color on hover */
+}
+
+/* Ensures the icon color matches the hover style */
+.small-box:hover .icon i {
+    color: #fff;
+}
+
+.small-box.bg-warning .inner h3,
+.small-box.bg-warning .inner p {
+    color: #fff; /* Set text color to white */
+}
+
+.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Highlight individual row on hover */
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5; /* Highlight color */
+    cursor: pointer; /* Change cursor to hand pointer */
+}
+
+/* Ensure that the table itself is not highlighted, only rows */
+.table-hover tbody tr {
+    background-color: white; /* Set background to white */
+    cursor: default; /* Default cursor */
+}
