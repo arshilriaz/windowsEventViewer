@@ -597,6 +597,7 @@ const eventTypeChart = new Chart(barCtx, {
 });
 
 var storedLogs = {};
+var globalLevel = "";
 
 function generateLogCards(newLogs) {
     storedLogs = newLogs; // Update the global variable
@@ -616,7 +617,7 @@ function generateLogCards(newLogs) {
 }
  
 document.getElementById('timeFilter').addEventListener('change', function () {
-    const activeCard = document.querySelector('.small-box');
+    const activeCard = document.querySelector('.small-box.active');
     const logLevel = activeCard.getAttribute('data-log-level');
     displayLogsForLevel(logLevel, false);
 });
@@ -756,3 +757,17 @@ document.getElementById('logSearch').addEventListener('input', function () {
     });
 });
 
+$(document).ready(function () {
+    $('#collapseButton').on('click', function () {
+        const icon = $('#collapse-icon');
+        const collapseElement = $('#logDetailsCollapse');
+
+        collapseElement.collapse('toggle');
+
+        collapseElement.on('shown.bs.collapse', function () {
+            icon.removeClass('fa-plus').addClass('fa-minus');
+        }).on('hidden.bs.collapse', function () {
+            icon.removeClass('fa-minus').addClass('fa-plus');
+        });
+    });
+});
