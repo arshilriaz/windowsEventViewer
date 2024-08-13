@@ -196,8 +196,7 @@ def fetch_logs(hostname, username, password, last_fetched):
                 """
             
     if hostname == local_hostname:
-        app_logs_command = 'Get-WinEvent -LogName Application | ConvertTo-Json'
-        result = subprocess.run(["powershell", "-Command", app_logs_command], capture_output=True, text=True)
+        result = subprocess.run(["powershell", "-Command", ps_script], capture_output=True, text=True)
         logs_output = result.stdout
         result.status_code = 0
  
