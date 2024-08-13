@@ -4,11 +4,9 @@ import os
 from dotenv import load_dotenv
 import subprocess
 import time
-from flask import Response
-from app.service.controllerService import host_verification, fetch_logs, preprocess
+from flask import make_response, jsonify
+from app.service.controllerService import host_verification, liveLogsService
 import platform
-from datetime import datetime, timedelta
-import re
 from app.service.modelService import add_machine_and_event
 load_dotenv()
 
@@ -24,7 +22,7 @@ def home():
 @main.route('/upload', methods = ['POST'])
 def upload():
     try:
-        hostFile = request.files['file']
+        hostFile = request.files['hostfile']
         new_data = json.load(hostFile)
         new_data["details"] = [{**entry, 'evtx': False} for entry in new_data["details"]]
  
@@ -49,8 +47,9 @@ def upload():
         return redirect(url_for('main.hosts'))
    
     except Exception as e:
-        flash(f'Invalid file format: {str(e)}')
-        return redirect(url_for('main.home'))
+        error_message = f'Invalid Credentials'
+        response = make_response(jsonify(message=error_message), 400)
+        return response
 
 
 @main.route('/upload_evtx', methods = ["POST"])
@@ -107,8 +106,9 @@ def upload_evtx():
             return redirect(url_for('main.hosts'))
        
     except Exception as e:
-        print(e)
-        return render_template('home/home.html')
+        error_message = f'Invalid Credentials/ Corrupt File'
+        response = make_response(jsonify(message=error_message), 400)
+        return response
  
    
 @main.route('/hosts')
@@ -119,28 +119,6 @@ def hosts():
             return render_template('hosts/hosts.html', hosts=hosts)
     except Exception as e:
         print(e)
- 
-
-@main.route('/getLog', methods=['POST'])
-def getLog():
-    try:
-        hostname = request.form['hostname']
-        username = request.form['username']
-        password = request.form['password']
-       
-        file_name = f"{hostname}_{username}_{password}.json"
-        file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR").replace("\\", "/"), file_name)
- 
-        with open(file_path, "r") as f:
-            log_data = json.load(f)
-            log_output = json.dumps(log_data, indent=4)
-            log_values = log_data['application']
- 
-        return render_template('seeLogs/seeLogs.html', logs=log_output, log_values = log_values)
-    except Exception as e:
-        error = f"Failed to connect to the Windows VM: {str(e)}"
-        return render_template('seeLogs/seeLogs.html', error=error)
-    
 
 @main.route('/liveLogs', methods=['GET'])
 def liveLogs():
@@ -148,80 +126,14 @@ def liveLogs():
     hostname = request.args.get('hostname')
     username = request.args.get('username')
     password = request.args.get('password')
+    seeLogsValue = request.args.get('seeLogsValue')
 
-    def generate():
-
-        last_fetched = None  
-        all_logs = [] 
-        year_counts = {str(year): 0 for year in range(datetime.now().year - 4, datetime.now().year + 1)}
-        log_counts = [0, 0, 0, 0, 0]  # assuming log levels range from 0 to 4
-        name_counts = {}  # Dictionary to track the count of each name
-        tf_hour_counts = {i: 0 for i in range(24)}
-
-        while True:
-            # Fetch new logs and update the last fetched timestamp
-            new_logs, last_fetched = fetch_logs(hostname, username, password, last_fetched)
-            if new_logs:
-                if not all_logs:
-                    all_logs.extend(new_logs)
-                else:
-                    if 'Level' in new_logs:
-                        all_logs.append(new_logs) 
-                    else:
-                        all_logs.extend(new_logs)
-
-                # If new log only has one event it is opening up, so if only one case needs this.
-                if 'Level' in new_logs:
-                    # Number of events per level calculation
-                    level = new_logs.get('Level', 0)  
-                    if 0 <= level < len(log_counts):
-                        log_counts[level] += 1
-
-                    # Filtering number of events for past 5 years
-                    timestamp = log.get('TimeCreated')
-                    year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
-                    if year in year_counts:
-                        year_counts[year] += 1
-
-                    name = log.get('ProviderName')
-                    if name:
-                        name_counts[name] = name_counts.get(name, 0) + 1
-
-                    # Update six-hour counts
-                    log_time = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000)
-                    if datetime.now() - log_time < timedelta(hours=24):
-                        hour_delta = (datetime.now() - log_time).total_seconds() // 3600
-                        if hour_delta in tf_hour_counts:
-                            tf_hour_counts[int(hour_delta)] += 1
-
-                # If multiple logs present do iteration
-                else:
-                    for log in new_logs:
-                        level = log.get('Level', 0)
-                        if 0 <= level < len(log_counts):
-                            log_counts[level] += 1
-                        
-                        timestamp = log.get('TimeCreated')
-                        year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
-                        if year in year_counts:
-                            year_counts[year] += 1
-
-                        # Update six-hour counts
-                        log_time = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000)
-                        if datetime.now() - log_time < timedelta(hours=24):
-                            hour_delta = (datetime.now() - log_time).total_seconds() // 3600
-                            if hour_delta in tf_hour_counts:
-                                tf_hour_counts[int(hour_delta)] += 1
-
-                        name = log.get('ProviderName')
-                        if name:
-                            name_counts[name] = name_counts.get(name, 0) + 1
-
-                yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts})}\n\n"
-            time.sleep(15)
-
-    return Response(generate(), mimetype="text/event-stream")
+    return liveLogsService(hostname, username, password, seeLogsValue)
 
 @main.route('/stream', methods=['POST'])
 def stream():
-    return render_template('liveLogs/liveLogs.html', form_data=request.form)
+    return render_template('liveLogs/liveLogs.html', form_data=request.form, seeLogs=False)
+
+@main.route('/seeLogsStream', methods=['POST'])
+def seeLogsStream():
+    return render_template('seeLogs/seeLogs.html', form_data=request.form, seeLogs=True)

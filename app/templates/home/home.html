@@ -1,48 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/templates/home/home.css">
-    <link rel="stylesheet" href="/templates/style.css">
-    <title>Upload JSON</title>
-</head>
-<body>
-    <a href="hosts">
-        <button class="button-theme">See All Hosts</button>
-    </a>
-    <br><br>
-    <br><br>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <title>Upload JSON</title>
+        <!-- Include AdminLTE and dependencies -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+         <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+               <li class="nav-item">
+                  <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+               </li>
+               <li class="nav-item d-none d-sm-inline-block">
+                  <a href="#" class="nav-link">About</a>
+               </li>
+               <li class="nav-item d-none d-sm-inline-block">
+                  <a href="#" class="nav-link">Contact</a>
+               </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
 
-    <div class="form-container">
-        <div class="form-item">
-            <h1>Upload Host Data</h1>
-            <form action="{{ url_for('main.upload') }}" method="post" enctype="multipart/form-data">
-                <div class="labels">
-                    <label for="hostfile">Select Host File:</label>
-                    <input type="file" name="file" accept=".json" required>
-                </div>
-                <input type="submit" value="upload">
-            </form>
-        </div>
-        <h2>or</h2>
+               <!-- User Profile Dropdown -->
+               <li class="nav-item dropdown">
+                  <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-user"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                     <a href="#" class="dropdown-item">Profile</a>
+                     <a href="#" class="dropdown-item">Settings</a>
+                     <div class="dropdown-divider"></div>
+                     <a href="#" class="dropdown-item">Logout</a>
+                  </div>
+               </li>
+               
+            </ul>
+         </nav>
+         <!-- /.navbar -->
+         <!-- Sidebar -->
+         <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img id="aig-logo" src="https://www.aig.com/content/experience-fragments/aig/america-canada/us_aig/en/header/master/_jcr_content/root/responsivegrid_1958828262/responsivegrid_copy/container_copy_copy/container_897891850/image_409587976.coreimg.png/1677180907520/icon-aig-logo-white.png" alt="AIG Logo" style="height: 35px; width: 58px; margin-right: 10px;">
+                <span class="brand-text font-weight-light">Observability</span>
+            </a>
+            <!-- Sidebar Menu -->
+            <div class="sidebar">
+               <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-        <div class="form-item">
-            
-            <h1>Upload Host Data and EVTX File</h1>
-            <form action="{{ url_for('main.upload_evtx') }}" method="post" enctype="multipart/form-data">
-                <div class="labels">
-                    <label for="hostfile">Select Host File:</label>
-                    <input type="file" name="hostfile" accept=".json" required>
-                </div>
-                <div class="labels">
-                    <label for="evtxfile">Select EVTX File:</label>
-                    <input type="file" name="evtxfile" accept=".evtx" required>
-                </div>
-                <input type="submit" value="upload">
-            </form>
-        </div>
-    </div>
+                        <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a href="hosts" class="nav-link">
+                            <i class="nav-icon fas fa-server"></i>
+                            <p>See All Hosts</p>
+                            </a>
+                        </li>
 
-</body>
+                  </ul>
+               </nav>
+            </div>
+            <!-- /.sidebar -->
+         </aside>
+         <!-- Content Wrapper. Contains page content -->
+         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+               <div class="container-fluid">
+                  <div class="row mb-2">
+
+                     <div class="col-sm-6">
+                        <h1 class="m-0"></h1>
+                     </div>
+
+                     <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                           <li class="breadcrumb-item"><a href="#">Home</a></li>
+                           <li class="breadcrumb-item active">Add a New Machine</li>
+                        </ol>
+                     </div>
+
+                     <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+               </div>
+               <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card card-primary shadow-sm">
+
+                    <div class="card-header">
+                        <h3 class="card-title">Enter Machine Data</h3>
+                    </div>
+                     <div class="card-body">
+
+                        <div id="uploadError" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+                            <span id="errorMessage"></span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form id="uploadForm" method="post" enctype="multipart/form-data">
+                           <div class="row">
+
+                              <div class="col-md-6">
+
+                                 <div class="form-group">
+                                    <label for="hostname">Hostname:</label>
+                                    <input type="text" name="hostname" class="form-control" placeholder="Enter Hostname" required>
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label for="username">Username:</label>
+                                    <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+                                 </div>
+
+                              </div>
+
+                              <div class="col-md-6">
+
+                                 <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                                 </div>
+
+                                 <div class="form-group">
+                                    <label for="confirm-password">Confirm Password:</label>
+                                    <input type="password" name="confirm-password" class="form-control" placeholder="Confirm Password" required>
+                                 </div>
+
+                              </div>
+
+                           </div>
+
+                           <div class="form-group form-check">
+                              <input type="checkbox" id="evtxCheck" class="form-check-input">
+                              <label for="evtxCheck" class="form-check-label">Upload EVTX File</label>
+                           </div>
+
+                           <div class="form-group" id="evtxFileContainer">
+                              <label for="evtxfile">Select EVTX File:</label>
+                              <input type="file" name="evtxfile" accept=".evtx" class="form-control-file" disabled>
+                           </div>
+
+                           <div class="form-group text-right">
+                              <input type="submit" value="Register" class="btn btn-primary btn-lg">
+                           </div>
+
+                        </form>
+                     </div>
+                  </div>
+                  <!-- /.card -->
+               </div>
+               <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+         </div>
+         <!-- /.content-wrapper -->
+      </div>
+
+      <div id="toast-container" class="toast-container position-fixed bottom-0 end-0 p-3">
+      </div>
+      
+
+      <script src="templates/home/home.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   </body>
 </html>

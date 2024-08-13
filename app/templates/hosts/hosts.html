@@ -4,118 +4,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hosts Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include AdminLTE and dependencies -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+    
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- /.navbar -->
+    <body class="hold-transition sidebar-mini layout-fixed">
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Hosts Data</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Hosts Data</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
+        <div class="wrapper">
+            
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>
+                </ul>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Add New Data Button -->
-                <div class="row mb-3">
-                    <div class="col-12 text-right">
-                        <a href="home" class="btn btn-success">
-                            <i class="fas fa-plus"></i> Add New Data
+                <!-- SEARCH FORM -->
+                <form class="form-inline ml-3">
+                    <div class="input-group input-group-sm">
+                        <input id="searchInput" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- User Profile Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-user"></i>
                         </a>
-                    </div>
-                </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar -->
 
-                <!-- Hosts Table -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Registered Hosts</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Hostname</th>
-                                    <th>Username</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for host in hosts.details %}
-                                <tr>
-                                    <td>{{ host.hostname }}</td>
-                                    <td>{{ host.username }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <form action="{{ url_for('main.getLog') }}" method="post" enctype="multipart/form-data">
-                                                <input type="hidden" name="hostname" value="{{ host['hostname'] }}">
-                                                <input type="hidden" name="username" value="{{ host['username'] }}">
-                                                <input type="hidden" name="password" value="{{ host['password'] }}">
-                                                <input type="submit" value="See Logs" class="btn btn-primary">
-                                            </form>
-                                            {% if not host.evtx %}
-                                            <form action="{{ url_for('main.stream') }}" method="post" enctype="multipart/form-data">
-                                                <input type="hidden" name="hostname" value="{{ host['hostname'] }}">
-                                                <input type="hidden" name="username" value="{{ host['username'] }}">
-                                                <input type="hidden" name="password" value="{{ host['password'] }}">
-                                                <input type="submit" value="Live Logs" class="btn btn-info">
-                                            </form>
-                                            {% endif %}
-                                        </div>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
+            <!-- Sidebar -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-link">
+                    <img id="aig-logo" src="https://www.aig.com/content/experience-fragments/aig/america-canada/us_aig/en/header/master/_jcr_content/root/responsivegrid_1958828262/responsivegrid_copy/container_copy_copy/container_897891850/image_409587976.coreimg.png/1677180907520/icon-aig-logo-white.png" alt="AIG Logo" style="height: 35px; width: 58px; margin-right: 10px;"> 
+                    <span class="brand-text font-weight-light">Observability</span>
+                </a>
 
-<!-- Include AdminLTE and dependencies -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+                <!-- Sidebar Menu -->
+                <div class="sidebar">
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <li class="nav-item">
+                                    <a href="home" class="nav-link">
+                                        <i class="nav-icon fas fa-upload"></i>
+                                        <p>Add a new machine</p>
+                                    </a>
+                                </li>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0">Hosts Data</h1>
+                            </div><!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">Hosts Data</li>
+                                </ol>
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <!-- Add New Data Button -->
+                        <div class="row mb-3">
+                            <div class="col-12 text-right">
+                                <a href="home" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> Add New Data
+                                </a>
+                            </div>
+                        </div>
+
+                        
+                        <!-- /.card -->
+
+                        <!-- Row for Widgets -->
+                        <div class="row">
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>{{ hosts.details|length }}</h3> <!-- Dynamically shows the count of registered hosts -->
+                                        <p>Total Hosts</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                </div>                        
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                        <p>Host Up Time</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>
+                                            {% set evtx_count = hosts.details | selectattr('evtx', 'equalto', true) | list | length %}
+                                            {% set total_hosts = hosts.details | length %}
+                                            {% set evtx_percentage = (evtx_count / total_hosts) * 100 %}
+                                            {{ evtx_percentage | round(2) }}%
+                                        </h3>
+                                        <!-- Count of .evtx files -->
+                                        <p>EVTX Files</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                </div>                                                
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3>
+                                            {% set evtx_count = hosts.details | selectattr('evtx', 'equalto', false) | list | length %}
+                                            {% set total_hosts = hosts.details | length %}
+                                            {% set evtx_percentage = (evtx_count / total_hosts) * 100 %}
+                                            {{ evtx_percentage | round(2) }}%
+                                        </h3>
+                                        <p>Non-EVTX Files</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fas fa-file"></i>
+                                    </div>
+                                </div>                        
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">Registered Hosts</h3>
+                                    <div class="form-group">
+                                        <select id="hostFilter" class="form-control">
+                                            <option value="all">All Machines</option>
+                                            <option value="evtx">EVTX Files</option>
+                                            <option value="non-evtx">Non-EVTX Files</option>
+                                        </select>
+                                    </div>
+                                </div>                        
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Hostname <i class="fas fa-sort"></i></th>
+                                            <th>Username <i class="fas fa-sort"></i></th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for host in hosts.details %}
+                                        <tr>
+                                            <td>{{ host.hostname }}</td>
+                                            <td>{{ host.username }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    {% if host.evtx %}
+                                                    <form action="{{ url_for('main.seeLogsStream') }}" method="post">
+                                                        <input type="hidden" name="hostname" value="{{ host.hostname }}">
+                                                        <input type="hidden" name="username" value="{{ host.username }}">
+                                                        <input type="hidden" name="password" value="{{ host.password }}">
+                                                        <input type="hidden" name="evtx" value="true">  <!-- Added hidden input to mark EVTX files -->
+                                                        <button type="submit" class="btn btn-primary">See Logs</button>
+                                                    </form>
+                                                    {% endif %}
+                                                    {% if not host.evtx %}
+                                                    <form action="{{ url_for('main.stream') }}" method="post">
+                                                        <input type="hidden" name="hostname" value="{{ host.hostname }}">
+                                                        <input type="hidden" name="username" value="{{ host.username }}">
+                                                        <input type="hidden" name="password" value="{{ host.password }}">
+                                                        <input type="hidden" name="evtx" value="false">  <!-- Added hidden input to mark non-EVTX files -->
+                                                        <button type="submit" class="btn btn-info">Live Logs</button>
+                                                    </form>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>                                
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                        <!-- Example Grid Layout for Detailed Information -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Example Card -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Host Performance</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Performance data and other information can go here...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Example Card -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Host Health</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Health metrics and other information can go here...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+        </div>
+
+        <script src="templates/hosts/hosts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </body>
 </html>
+

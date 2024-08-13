@@ -1,5 +1,249 @@
+.pie-card, .bar-card {
+    max-width: 680px;
+    margin: 10px;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.pie-card .card-body, .bar-card .card-body {
+    padding: 10px;
+}
+
+.pie-card .card-title, .bar-card .card-title, .card-title {
+    font-weight: bold;
+}
+
+.pie-card .card-tools, .bar-card .card-tools {
+    float: right;
+    margin-right: 5px;
+}
+
+.pie-card {
+    max-height: 610px;
+    overflow-y: auto;
+}
+
+/* For dragging */
+.sortable .ui-sortable-helper {
+    max-width: 680px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Placeholder during dragging */
+.sort-highlight {
+    height: 100px;
+    border: 2px dashed #ddd;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Maximized card adjustments */
+.pie-card.card-maximized, .bar-card.card-maximized {
+    max-width: none;
+    width: 100%;
+}
+
+.pie-card.card-maximized canvas, .bar-card.card-maximized canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#yearSelect {
+    max-width: 120px; /* Adjust width as necessary */
+    margin-right: 10px;
+}
+
+
+#yearSelect:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.dropdown-menu {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+}
+
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-tools {
+    display: flex;
+    align-items: center;
+}
+.card-tools select {
+    margin-right: 10px; /* Adjust spacing between dropdown and buttons */
+}
+
+#logPieChart{
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+#eventTypeChart {
+    width: 100% !important;
+    min-height: 50px !important; /* Make sure height adjusts automatically */
+    max-height: auto !important;
+}
+
+.card-body {
+    max-height: none; /* Allow the card body to grow as needed */
+    height: auto; /* Make sure the height is set to auto */
+}
+
 .card-body {
     padding: 10px; /* Adjust padding inside the card body */
+}
+ 
+/* Make the log details header and filter sticky */
+.card-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+    padding-right: 100px;
+}
+ 
+/* Keep the log details text fixed while scrolling */
+#log-details:hover h3.card-title {
+    font-weight: bold;
+    display: inline-block;
+    margin: 0;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+ 
+#timeFilter {
+    display: inline-block;
+    width:50%;
+    margin-left: 20px;
+}
+ 
+.small-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Change cursor to hand icon */
+}
+ 
+.small-box:hover {
+    transform: scale(1.05); /* Slightly enlarges the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
+    background-color: #007bff; /* Change this to any color you prefer */
+    color: #fff;
+}
+ 
+.small-box:hover .inner h3,
+.small-box:hover .inner p {
+    color: #fff; /* Changes text color on hover */
+}
+ 
+/* Ensures the icon color matches the hover style */
+.small-box:hover .icon i {
+    color: #fff;
+}
+ 
+.small-box.bg-warning .inner h3,
+.small-box.bg-warning .inner p {
+    color: #fff; /* Set text color to white */
+}
+ 
+.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+ 
+/* Highlight individual row on hover */
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5; /* Highlight color */
+    cursor: pointer; /* Change cursor to hand pointer */
+}
+ 
+/* Ensure that the table itself is not highlighted, only rows */
+.table-hover tbody tr {
+    background-color: white; /* Set background to white */
+    cursor: default; /* Default cursor */
+}
+
+h3.card-title{
+    font-weight: bold;
+}
+
+.card-header {
+    padding: 1rem;
+    background-color: #f8f9fa; /* Optional: Adjust background color as needed */
+}
+
+.form-group {
+    margin-bottom: 0; /* Remove bottom margin to keep elements aligned */
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.mr-2 {
+    margin-right: .5rem; /* Optional: Adjust spacing between label and dropdown */
+}
+
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+.filter-section label {
+    font-weight: bold;
+    margin-right: 20px;
+}
+ 
+.filter-section select,
+.filter-section input[type="range"],
+.filter-section input[type="text"] {
+    max-width: 200px;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+ 
+.filter-section input[type="range"] {
+    width: 100%;
+}
+ 
+.filter-section span {
+    min-width: 50px;
+    text-align: center;
 }
 
 

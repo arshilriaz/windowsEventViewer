@@ -29,6 +29,48 @@
             "username": "arshi",
             "password": "040898",
             "evtx": true
+        },
+        {
+            "hostname": "192.168.64.3",
+            "username": "Rohith1",
+            "password": "3855",
+            "evtx": true
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "Rohith2",
+            "password": "3855",
+            "evtx": true
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "RohithKona",
+            "password": "386",
+            "evtx": true
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "RohithNew",
+            "password": "386",
+            "evtx": true
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "RohithToday",
+            "password": "3866",
+            "evtx": true
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "RohithToday",
+            "password": "3855",
+            "evtx": true
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "Rohith",
+            "password": "3855",
+            "evtx": true
         }
     ]
 }

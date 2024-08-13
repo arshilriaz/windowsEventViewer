@@ -1,0 +1,2017 @@
+{
+    "hostname": "192.168.64.3",
+    "username": "Rohith",
+    "password": "3855",
+    "application": [
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "edgeupdate",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 0
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:28:47.979000Z"
+                    },
+                    "EventRecordID": "1605",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 6000,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:25:07.365000Z"
+                    },
+                    "EventRecordID": "1604",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3884,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:24:20.710000Z"
+                    },
+                    "EventRecordID": "1603",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3884,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:22:37.046000Z"
+                    },
+                    "EventRecordID": "1602",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9144,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:22:04.783000Z"
+                    },
+                    "EventRecordID": "1601",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9144,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 15
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:19:12.153000Z"
+                    },
+                    "EventRecordID": "1600",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 15
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:17:57.318000Z"
+                    },
+                    "EventRecordID": "1599",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:12:33.799000Z"
+                    },
+                    "EventRecordID": "1598",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 8032,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:11:50.793000Z"
+                    },
+                    "EventRecordID": "1597",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 8032,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:10:00.486000Z"
+                    },
+                    "EventRecordID": "1596",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1484,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 15
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:32.501000Z"
+                    },
+                    "EventRecordID": "1595",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 1
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:30.470000Z"
+                    },
+                    "EventRecordID": "1594",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Search",
+                        "@Guid": "ca4e628d-8567-4896-ab6b-835b221f373f"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 1,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:30.050000Z"
+                    },
+                    "EventRecordID": "1593",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1904,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "edgeupdate",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 0
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:22.384000Z"
+                    },
+                    "EventRecordID": "1592",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 5172,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 8198
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:20.724000Z"
+                    },
+                    "EventRecordID": "1591",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 6060,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:20.660000Z"
+                    },
+                    "EventRecordID": "1590",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1484,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:19.869000Z"
+                    },
+                    "EventRecordID": "1589",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1484,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Winlogon",
+                        "@Guid": "dbe9b383-7cf3-4331-91cc-a3cb16a3b538"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 32768,
+                        "#text": 6000
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:18.739000Z"
+                    },
+                    "EventRecordID": "1588",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 756,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Winlogon",
+                        "@Guid": "dbe9b383-7cf3-4331-91cc-a3cb16a3b538"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 32768,
+                        "#text": 6003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:09:18.503000Z"
+                    },
+                    "EventRecordID": "1587",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 756,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 903
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:56.335000Z"
+                    },
+                    "EventRecordID": "1586",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:56.277000Z"
+                    },
+                    "EventRecordID": "1585",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 8198
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:26.257000Z"
+                    },
+                    "EventRecordID": "1584",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 5248,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:26.239000Z"
+                    },
+                    "EventRecordID": "1583",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 8198
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:26.204000Z"
+                    },
+                    "EventRecordID": "1582",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3712,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:26.174000Z"
+                    },
+                    "EventRecordID": "1581",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 902
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:23.295000Z"
+                    },
+                    "EventRecordID": "1580",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-WMI",
+                        "@Guid": "1edeee53-0afe-4609-b846-d8c0b2075b1f"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 5617
+                    },
+                    "Version": 2,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:22.209000Z"
+                    },
+                    "EventRecordID": "1579",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3512,
+                        "@ThreadID": 3764
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:22.217000Z"
+                    },
+                    "EventRecordID": "1578",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1066
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:22.094000Z"
+                    },
+                    "EventRecordID": "1577",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:21.899000Z"
+                    },
+                    "EventRecordID": "1576",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 900
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:21.560000Z"
+                    },
+                    "EventRecordID": "1575",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4744,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-WMI",
+                        "@Guid": "1edeee53-0afe-4609-b846-d8c0b2075b1f"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 5615
+                    },
+                    "Version": 2,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:17.973000Z"
+                    },
+                    "EventRecordID": "1574",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3512,
+                        "@ThreadID": 3596
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-User Profiles Service",
+                        "@Guid": "89b1e9f0-5aff-44a6-9b44-0a07a7ce5845"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1531
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-12T14:07:14.155000Z"
+                    },
+                    "EventRecordID": "1573",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1644,
+                        "@ThreadID": 1740
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "VSS",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 8224
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:49:03.816000Z"
+                    },
+                    "EventRecordID": "1572",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9284,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:47:11.538000Z"
+                    },
+                    "EventRecordID": "1571",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9592,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 15
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:46:41.402000Z"
+                    },
+                    "EventRecordID": "1570",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3984,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 15
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:46:39.379000Z"
+                    },
+                    "EventRecordID": "1569",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3984,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:46:10.866000Z"
+                    },
+                    "EventRecordID": "1568",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9592,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "edgeupdate",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 0
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:46:09.850000Z"
+                    },
+                    "EventRecordID": "1567",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4972,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "SecurityCenter",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 15
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T20:46:06.775000Z"
+                    },
+                    "EventRecordID": "1566",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 3984,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T01:43:45.723000Z"
+                    },
+                    "EventRecordID": "1565",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T01:43:15.260000Z"
+                    },
+                    "EventRecordID": "1564",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "VSS",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 8224
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T01:42:58.548000Z"
+                    },
+                    "EventRecordID": "1563",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 5876,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "VSS",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 8224
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T01:33:55.121000Z"
+                    },
+                    "EventRecordID": "1562",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 5936,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T00:57:56.387000Z"
+                    },
+                    "EventRecordID": "1561",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T00:57:26.044000Z"
+                    },
+                    "EventRecordID": "1560",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 9124,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T00:01:50.190000Z"
+                    },
+                    "EventRecordID": "1559",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 8920,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-11T00:01:19.751000Z"
+                    },
+                    "EventRecordID": "1558",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 8920,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-10T23:08:17.615000Z"
+                    },
+                    "EventRecordID": "1557",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4484,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-10T23:07:47.456000Z"
+                    },
+                    "EventRecordID": "1556",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 4484,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "DESKTOP-U22SSQ0",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        }
+    ]
+}
