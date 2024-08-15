@@ -75,7 +75,7 @@ eventSource.onmessage = function(event) {
     numberFilter.value = totalLogs; // Set the initial value to the max (total logs)
     updateNumberFilterLabel(totalLogs);
 
-    generateLogCards(data.newLogs);
+    generateLogCards(data.allLogs);
 
     const yearlyEventCounts = data.yearCounts;
 
@@ -615,8 +615,10 @@ const eventTypeChart = new Chart(barCtx, {
 var storedLogs = {};
 var globalLevel = "";
 
-function generateLogCards(newLogs) {
-    storedLogs = newLogs; // Update the global variable
+function generateLogCards(allLogs) {
+    console.log("New Logs", allLogs)
+    storedLogs = allLogs; // Update the global variable
+    console.log("storedLogs in Generate", storedLogs)
 
     // Add click event listeners to each card
     // Select all the cards using the class 'small-box'
@@ -625,7 +627,7 @@ function generateLogCards(newLogs) {
     cards.forEach(card => {
         card.addEventListener('click', function () {
             // Perform any necessary actions here
-            storedLogs = newLogs;
+            storedLogs = allLogs;
             const logLevel = this.getAttribute('data-log-level');
             displayLogsForLevel(logLevel, false);  // Assuming this function is defined elsewhere
         });
@@ -648,6 +650,8 @@ function displayLogsForLevel(level, changeNumber) {
     const logDetailsBody = document.getElementById('log-details-body');
     const timeFilter = document.getElementById('timeFilter').value;
     const numberFilter = parseInt(document.getElementById('numberFilter').value);
+
+    console.log("storedLogs", storedLogs)
 
     // Clear previous logs
     logDetailsBody.innerHTML = '';

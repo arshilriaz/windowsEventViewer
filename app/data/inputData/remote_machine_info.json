@@ -11,6 +11,18 @@
             "username": "arshi",
             "password": "040898",
             "evtx": false
+        },
+        {
+            "hostname": "3.92.202.195",
+            "username": "Administrator",
+            "password": "Go5d8s9UTDgrdctfb$95!Gx(of(2gCC?",
+            "evtx": false
+        },
+        {
+            "hostname": "192.168.64.38",
+            "username": "Rohith",
+            "password": "3",
+            "evtx": true
         }
     ]
 }

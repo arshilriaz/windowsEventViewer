@@ -186,20 +186,17 @@ def fetch_logs(hostname, username, password, last_fetched):
     local_hostname = os.getenv('COMPUTERNAME')
 
     if last_fetched is not None:
-        if type(last_fetched) is str:
+        if isinstance(last_fetched, str):
             milliseconds = int(str(last_fetched).strip('/Date()').strip(')/'))
             last_fetched = datetime.fromtimestamp(milliseconds / 1000.0)
 
-            strict_milliseconds = milliseconds + 1
-            strict_last_fetched = datetime.fromtimestamp(strict_milliseconds / 1000.0)
-        
-        else:
-            strict_milliseconds = int(last_fetched.timestamp() * 1000)
-            strict_last_fetched = datetime.fromtimestamp(strict_milliseconds / 1000.0)
+        # Ensure strict_milliseconds is set correctly with at least a 1ms increment
+        strict_milliseconds = int(last_fetched.timestamp() * 1000) + 1
+        strict_last_fetched = datetime.fromtimestamp(strict_milliseconds / 1000.0)
 
-
+        # Adjusting to handle up to 6 digits of milliseconds
         ps_script = f"""
-        $date_fetched = [DateTime]::ParseExact('{str(strict_last_fetched)}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
+        $date_fetched = [DateTime]::ParseExact('{strict_last_fetched.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
         Get-WinEvent -FilterHashtable @{{LogName = 'Application'; StartTime = $date_fetched}} | ConvertTo-Json -Depth 5
         """
             
@@ -350,19 +347,17 @@ def liveLogsService(hostname, username, password, seeLogsValue):
 
                     # If new log only has one event it is opening up, so if only one case needs this.
                     if 'Level' in new_logs:
-                        # Number of events per level calculation
-                        level = new_logs.get('Level', 0)  
+                        level = log.get('Level', 0)
                         if 0 <= level < len(log_counts):
                             log_counts[level] += 1
-
-                        # Filtering number of events for past 5 years
-                        timestamp = new_logs.get('TimeCreated')
+                        
+                        timestamp = log.get('TimeCreated')
                         year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
                         if year in year_counts:
                             year_counts[year] += 1
                         else:
                             year_counts[year] = 1
-                        
+
                         # Daily Event Counts
                         log_date = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y-%m-%d')
                         year = log_date[:4]
@@ -375,16 +370,18 @@ def liveLogsService(hostname, username, password, seeLogsValue):
 
                         daily_event_counts[year][log_date] += 1
 
-                        name = log.get('ProviderName')
-                        if name:
-                            name_counts[name] = name_counts.get(name, 0) + 1
-
                         # Update six-hour counts
                         log_time = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000)
                         if datetime.now() - log_time < timedelta(hours=24):
                             hour_delta = (datetime.now() - log_time).total_seconds() // 3600
                             if hour_delta in tf_hour_counts:
                                 tf_hour_counts[int(hour_delta)] += 1
+
+                        name = log.get('ProviderName')
+                        if name:
+                            name_counts[name] = name_counts.get(name, 0) + 1
+
+                        
 
                     # If multiple logs present do iteration
                     else:
@@ -448,7 +445,7 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                                 if year in level_display_counts:
                                     level_display_counts[year][level_display_name] += 1
                                     level_display_counts['all_years'][level_display_name] += 1
-                    yield f"data: {json.dumps({'logsCount': all_logs_count, 'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts, 'dailyEventCounts': daily_event_counts, 'all_year_split_counts': level_display_counts,'levelDisplayCounts': level_display_counts, 'newLogs': new_logs})}\n\n"
+                yield f"data: {json.dumps({'logsCount': all_logs_count, 'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts, 'dailyEventCounts': daily_event_counts, 'all_year_split_counts': level_display_counts,'levelDisplayCounts': level_display_counts, 'allLogs': all_logs, 'newLogs': new_logs})}\n\n"
                 time.sleep(15)
 
         return Response(generate(), mimetype="text/event-stream")
@@ -602,7 +599,7 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                                         level_display_counts[year][level_display_name] += 1
                                         level_display_counts['all_years'][level_display_name] += 1
 
-                        yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts, 'dailyEventCounts': daily_event_counts, 'all_year_split_counts': level_display_counts,'levelDisplayCounts': level_display_counts, 'newLogs': new_logs})}\n\n"
+                    yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts, 'dailyEventCounts': daily_event_counts, 'all_year_split_counts': level_display_counts,'levelDisplayCounts': level_display_counts, 'newLogs': new_logs})}\n\n"
                     time.sleep(10000000)
 
             return Response(generate(), mimetype="text/event-stream")
