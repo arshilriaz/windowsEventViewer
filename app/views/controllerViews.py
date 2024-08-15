@@ -1,13 +1,9 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash
+from flask import Blueprint, render_template, request, url_for, redirect
 import json
 import os
 from dotenv import load_dotenv
-import subprocess
-import time
 from flask import make_response, jsonify
-from app.service.controllerService import host_verification, liveLogsService
-import platform
-from app.service.modelService import add_machine_and_event
+from app.service.controllerService import host_verification, liveLogsService, uploadEVTXService, uploadService
 load_dotenv()
 
 main = Blueprint('main', __name__)
@@ -23,28 +19,10 @@ def home():
 def upload():
     try:
         hostFile = request.files['hostfile']
-        new_data = json.load(hostFile)
-        new_data["details"] = [{**entry, 'evtx': False} for entry in new_data["details"]]
- 
-        # check if all required keys are present or not and only pass them and get logs and flag is true if just hostdetails
-        result, new_unique_data, existing_data, all_logs = host_verification(new_data, flag=True)
- 
-        if result == "false":
-            return redirect(url_for('main.main'))
- 
-        if new_unique_data:
-            existing_data["details"].extend(new_data["details"])
-            hostname = all_logs['hostname']
-            username = all_logs['username']
-            password = all_logs['password']
-            application = all_logs['application']
-
-            add_machine_and_event(hostname, username, password, application)
- 
-            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
-                json.dump(existing_data, f, indent=4)
- 
-        return redirect(url_for('main.hosts'))
+        if uploadService(hostFile=hostFile):
+            return make_response(jsonify(message="Success"), 200)
+        else:
+            return make_response(jsonify(message="Invalid Credentials"), 400)
    
     except Exception as e:
         error_message = f'Invalid Credentials'
@@ -57,54 +35,8 @@ def upload_evtx():
     try:
         hostFile = request.files['hostfile']
         evtxFile = request.files['evtxfile']
-       
-        host_json_data = json.load(hostFile)
-        host_json_data["details"] = [{**entry, 'evtx': True} for entry in host_json_data["details"]]
- 
-        # check if all required keys are present or not and only pass them and get logs and flag is false if there is already a EVTX File
-        result, new_unique_data, existing_data, all_logs = host_verification(host_json_data, flag=False)
- 
-        hostname=host_json_data["details"][0]['hostname']
-        username=host_json_data["details"][0]['username']
-        password=host_json_data["details"][0]['password']
- 
-        evtx_file_name = f"{hostname}_{username}_{password}.evtx"
-        evtx_file_path = os.path.join(os.getcwd() + "/" + os.getenv("MODEL_INPUT_EVTX"), evtx_file_name).replace("\\", "/")
-        evtxFile.save(evtx_file_path)    
- 
-        if platform.system() == "Windows":
-            # Windows specific command
-            command = [
-                "cmd", "/c", "cd python-evtx && cd scripts && python evtx_dump.py", evtx_file_path, hostname, username, password
-            ]
-        else:
-            # Mac/Linux specific command
-            command = [
-                "sh", "-c", f"cd python-evtx/scripts && python evtx_dump.py {evtx_file_path} {hostname} {username} {password}"
-            ]
-        subprocess.run(command)
-
-        # Sometimes files are having ][ so just replacing that with ','
-        file_name = f"{hostname}_{username}_{password}.json"
-        file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR"), file_name)
-
-        with open(file_path, 'r') as file:
-            file_contents = file.read()
-            file_contents = file_contents.replace('][', ',')
-
-        # Write the modified contents back to the file
-        with open(file_path, 'w') as file:
-            file.write(file_contents)
-
-        if new_unique_data:
-            existing_data["details"].extend(host_json_data["details"])
- 
-            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
-                json.dump(existing_data, f, indent=4)
- 
-        with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
-            return redirect(url_for('main.hosts'))
-       
+        return uploadEVTXService(hostFile, evtxFile)
+        
     except Exception as e:
         error_message = f'Invalid Credentials/ Corrupt File'
         response = make_response(jsonify(message=error_message), 400)
@@ -137,3 +69,41 @@ def stream():
 @main.route('/seeLogsStream', methods=['POST'])
 def seeLogsStream():
     return render_template('seeLogs/seeLogs.html', form_data=request.form, seeLogs=True)
+
+@main.route('/removeMachine', methods=['POST'])
+def removeMachine():
+    try:
+        hostname = request.form['hostname']
+        username = request.form['username']
+        password = request.form['password']
+        evtx = request.form.get('evtx') == 'True'
+
+        file_path = os.getenv("MODEL_OUTPUT_DIR")
+        file_name = f"{hostname}_{username}_{password}.json"  # Consider hashing or more secure handling
+        full_path = os.path.join(file_path, file_name)
+
+        input_file_path = os.getenv("MODEL_INPUT_DIR")
+
+        if os.path.exists(input_file_path):
+            with open(input_file_path, "r") as file:
+                data = json.load(file)
+
+            # Filter out the entry matching the provided details
+            updated_details = [entry for entry in data["details"] if not (
+                entry["hostname"] == hostname and 
+                entry["username"] == username and 
+                entry["password"] == password and 
+                entry["evtx"] == evtx
+            )]
+
+            # Write the updated data back to the JSON file
+            with open(input_file_path, "w") as file:
+                json.dump({"details": updated_details}, file, indent=4)
+
+        
+        if evtx and os.path.exists(full_path):
+            os.remove(full_path)
+                
+        return redirect(url_for('main.hosts'))
+    except Exception:
+        return jsonify({"status": "error", "message": "File not found."}), 404

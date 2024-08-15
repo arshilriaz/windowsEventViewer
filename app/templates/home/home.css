@@ -95,3 +95,22 @@ a {
     color: #4CAF50; /* Green text on hover */
     border: 1px solid #4CAF50; /* Maintain border on hover */
 }
+
+.pl-5{
+    padding-left: 30rem;
+}
+
+.custom-toast {
+    width: 3000px; /* Adjust width */
+    height: 100px; /* Adjust height */
+    padding: 10px; /* Adjust padding if needed */
+}
+
+#loading-spinner {
+    width: 100px;  /* Adjust width */
+    height: 100px; /* Adjust height */
+}
+
+#loading-spinner i {
+    font-size: 3rem; /* Adjust spinner icon size */
+}

@@ -9,9 +9,29 @@ from flask import jsonify
 import subprocess
 import time
 from datetime import timedelta
-from flask import Response, jsonify
+import platform
+from flask import Response, jsonify, url_for, redirect
+from app.service.modelService import add_machine_and_event
 
 def get_logs(hostname, username, password):
+    """
+    The function `get_logs` retrieves application logs either from the local machine or a remote machine
+    using WinRM, processes the logs into a desired format, and saves the output as a JSON file.
+    
+    :param hostname: The `hostname` parameter in the `get_logs` function refers to the name or IP
+    address of the machine from which you want to fetch logs. It can be either the local machine or a
+    remote machine
+    :param username: The `username` parameter in the `get_logs` function is used to specify the username
+    required for authentication when accessing logs from a remote machine. It is typically the username
+    of the account that has the necessary permissions to retrieve logs from the remote machine using
+    WinRM (Windows Remote Management)
+    :param password: It seems like you were about to provide information about the `password` parameter,
+    but the information is missing. Could you please provide more details or let me know if you need
+    assistance with something specific related to the `password` parameter in the `get_logs` function?
+    :return: The function `get_logs` returns either a success message along with the logs data in JSON
+    format if the logs retrieval process is successful, or it returns an error message along with the
+    exception details if there is a failure in retrieving the logs.
+    """
     try:
         local_hostname = os.getenv('COMPUTERNAME')
        
@@ -108,6 +128,19 @@ def get_logs(hostname, username, password):
     
     
 def dump_json_file(json_data, dir_path, fileName):
+    """
+    The function `dump_json_file` writes JSON data to a file in a specified directory with error
+    handling.
+    
+    :param json_data: The `json_data` parameter is the data that you want to write to a JSON file. It
+    can be a dictionary, list, or any other JSON-serializable data structure that you want to store in a
+    file
+    :param dir_path: The `dir_path` parameter in the `dump_json_file` function represents the directory
+    path where the JSON file will be saved. It should be a string that specifies the directory location
+    where you want to save the JSON file. For example, it could be something like "/path/to/directory"
+    :param fileName: The `fileName` parameter is a string that represents the name of the JSON file that
+    will be created in the specified directory path
+    """
     try:
         file_path = os.path.join(dir_path, fileName)
 
@@ -146,26 +179,6 @@ def host_verification(new_data, flag):
         all_logs = []
 
     return result, new_unique_data, existing_data, all_logs
-
-
-def evtx_lookup_and_conversion(evtx_file, json_path):
-    header = FileHeader(evtx_file, 0x0)
-    events = []
-    for record in header.records():
-        try:
-            xml_content = record.xml()
-            event = XML(xml_content)
-            event_data = {
-                "EventID": event.find(".//EventID").text,
-                "MachinName": event.find(".//MachinName").text,
-                "TimeGenerated": event.find(".//TimeGenerated").attrib["SystemTime"]
-            }
-            events.append(event_data)
-        except Exception as e:
-            print(f"Error processing record: {e}")
-
-    with open(json_path, "w") as json_file:
-        json.dump(events, json_file, indent=4)
 
 
 def fetch_logs(hostname, username, password, last_fetched):
@@ -227,6 +240,84 @@ def convert_json_date_to_datetime(json_date):
     
     # Convert milliseconds to a datetime object
     return datetime.datetime.fromtimestamp(milliseconds / 1000.0)
+
+
+def uploadService(hostFile):
+    try:
+        new_data = json.load(hostFile)
+        new_data["details"] = [{**entry, 'evtx': False} for entry in new_data["details"]]
+
+        # check if all required keys are present or not and only pass them and get logs and flag is true if just hostdetails
+        result, new_unique_data, existing_data, all_logs = host_verification(new_data, flag=True)
+
+        if result == "false":
+            return redirect(url_for('main.main'))
+
+        if new_unique_data:
+            existing_data["details"].extend(new_data["details"])
+            hostname = all_logs['hostname']
+            username = all_logs['username']
+            password = all_logs['password']
+            application = all_logs['application']
+
+            add_machine_and_event(hostname, username, password, application)
+
+            with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
+                json.dump(existing_data, f, indent=4)
+
+        return True
+    except Exception as e:
+        return False
+
+
+def uploadEVTXService(hostFile, evtxFile):
+    host_json_data = json.load(hostFile)
+    host_json_data["details"] = [{**entry, 'evtx': True} for entry in host_json_data["details"]]
+
+    # check if all required keys are present or not and only pass them and get logs and flag is false if there is already a EVTX File
+    result, new_unique_data, existing_data, all_logs = host_verification(host_json_data, flag=False)
+
+    hostname=host_json_data["details"][0]['hostname']
+    username=host_json_data["details"][0]['username']
+    password=host_json_data["details"][0]['password']
+
+    evtx_file_name = f"{hostname}_{username}_{password}.evtx"
+    evtx_file_path = os.path.join(os.getcwd() + "/" + os.getenv("MODEL_INPUT_EVTX"), evtx_file_name).replace("\\", "/")
+    evtxFile.save(evtx_file_path)    
+
+    if platform.system() == "Windows":
+        # Windows specific command
+        command = [
+            "cmd", "/c", "cd python-evtx && cd scripts && python evtx_dump.py", evtx_file_path, hostname, username, password
+        ]
+    else:
+        # Mac/Linux specific command
+        command = [
+            "sh", "-c", f"cd python-evtx/scripts && python evtx_dump.py {evtx_file_path} {hostname} {username} {password}"
+        ]
+    subprocess.run(command)
+
+    # Sometimes files are having ][ so just replacing that with ','
+    file_name = f"{hostname}_{username}_{password}.json"
+    file_path = os.path.join(os.getenv("MODEL_OUTPUT_DIR"), file_name)
+
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+        file_contents = file_contents.replace('][', ',')
+
+    # Write the modified contents back to the file
+    with open(file_path, 'w') as file:
+        file.write(file_contents)
+
+    if new_unique_data:
+        existing_data["details"].extend(host_json_data["details"])
+
+        with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'w') as f:
+            json.dump(existing_data, f, indent=4)
+
+    with open(os.getenv("MODEL_INPUT_DIR").replace("\\", "/"), 'r') as f:
+        return redirect(url_for('main.hosts'))
+    
 
 def liveLogsService(hostname, username, password, seeLogsValue):
     if seeLogsValue == 'False':

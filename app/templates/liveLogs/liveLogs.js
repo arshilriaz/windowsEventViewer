@@ -8,6 +8,22 @@ const seeLogsValue = seeLogsCheck.getAttribute('see-logs');
 
 var eventSource = new EventSource('/liveLogs?hostname=' + hostname + '&username=' + username + '&password=' + password + '&seeLogsValue=' + seeLogsValue);
 
+eventSource.onerror = function(event) {
+    console.error("An error occurred while connecting to the EventSource.", event);
+
+    // Display a toast notification for the error
+    $(document).Toasts('create', {
+        class: 'bg-danger', 
+        title: 'Error',
+        body: 'An error occurred while retrieving live logs. Please try again.',
+        autohide: true,
+        delay: 5000 // Adjust the delay as needed
+    });
+
+    // Optionally, close the EventSource connection
+    eventSource.close();
+};
+
 // Define a consistent color mapping for log levels
 const cardColors = {
     'Critical': { bgColor: 'bg-danger', color: 'rgba(255, 99, 132, 0.6)', borderColor: 'rgba(255, 99, 132, 1)' },

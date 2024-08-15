@@ -32,3 +32,35 @@ document.getElementById('hostFilter').addEventListener('change', function() {
         }
     });
 });
+
+function setRemoveAction(hostname, username, password, evtx) {
+    document.getElementById('confirmRemoveBtn').onclick = function() {
+        // Create a form dynamically
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = '/removeMachine';
+
+        // Add hidden fields to the form
+        var fields = {
+            hostname: hostname,
+            username: username,
+            password: password,
+            evtx: evtx
+        };
+
+        for (var key in fields) {
+            if (fields.hasOwnProperty(key)) {
+                var hiddenField = document.createElement('input');
+                hiddenField.type = 'hidden';
+                hiddenField.name = key;
+                hiddenField.value = fields[key];
+                form.appendChild(hiddenField);
+            }
+        }
+
+        // Append form to the body and submit
+        document.body.appendChild(form);
+        form.submit();
+    };
+}
+

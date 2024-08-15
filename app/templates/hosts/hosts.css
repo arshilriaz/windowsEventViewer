@@ -132,3 +132,12 @@ a {
     color: #2196F3;
     border: 1px solid #2196F3;
 }
+
+.btn-remove{
+    background-color:red; 
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
