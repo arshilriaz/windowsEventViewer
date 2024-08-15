@@ -196,7 +196,7 @@ def fetch_logs(hostname, username, password, last_fetched):
 
         # Adjusting to handle up to 6 digits of milliseconds
         ps_script = f"""
-        $date_fetched = [DateTime]::ParseExact('{strict_last_fetched.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
+        $date_fetched = [DateTime]::ParseExact('{(strict_last_fetched + timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
         Get-WinEvent -FilterHashtable @{{LogName = 'Application'; StartTime = $date_fetched}} | ConvertTo-Json -Depth 5
         """
             
@@ -338,12 +338,12 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                 all_logs_count = len(new_logs)
                 if new_logs:
                     if not all_logs:
-                        all_logs.extend(new_logs)
+                        all_logs[:0] = new_logs
                     else:
                         if 'Level' in new_logs:
-                            all_logs.append(new_logs) 
+                            all_logs[:0] = new_logs
                         else:
-                            all_logs.extend(new_logs)
+                            all_logs[:0] = new_logs
 
                     # If new log only has one event it is opening up, so if only one case needs this.
                     if 'Level' in new_logs:
