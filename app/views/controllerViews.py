@@ -107,3 +107,7 @@ def removeMachine():
         return redirect(url_for('main.hosts'))
     except Exception:
         return jsonify({"status": "error", "message": "File not found."}), 404
+    
+@main.route('/contact', methods=['GET'])
+def contact():
+    return render_template('contact/contact.html', form_data=request.form, seeLogs=True)

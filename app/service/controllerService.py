@@ -9,6 +9,7 @@ from flask import jsonify
 import subprocess
 import time
 from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 import platform
 from flask import Response, jsonify, url_for, redirect
 from app.service.modelService import add_machine_and_event
@@ -186,30 +187,30 @@ def fetch_logs(hostname, username, password, last_fetched):
     local_hostname = os.getenv('COMPUTERNAME')
 
     if last_fetched is not None:
-        if isinstance(last_fetched, str):
-            milliseconds = int(str(last_fetched).strip('/Date()').strip(')/'))
-            last_fetched = datetime.fromtimestamp(milliseconds / 1000.0)
-
-        # Ensure strict_milliseconds is set correctly with at least a 1ms increment
-        strict_milliseconds = int(last_fetched.timestamp() * 1000) + 1
-        strict_last_fetched = datetime.fromtimestamp(strict_milliseconds / 1000.0)
+        last_fetched_datetime = datetime.strptime(last_fetched, '%A, %B %d, %Y %I:%M:%S %p')
 
         # Adjusting to handle up to 6 digits of milliseconds
         ps_script = f"""
-        $date_fetched = [DateTime]::ParseExact('{(strict_last_fetched + timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
-        Get-WinEvent -FilterHashtable @{{LogName = 'Application'; StartTime = $date_fetched}} | ConvertTo-Json -Depth 5
+        $date_fetched = [DateTime]::ParseExact('{(last_fetched_datetime + timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]}', 'yyyy-MM-dd HH:mm:ss.fff', [System.Globalization.CultureInfo]::InvariantCulture)
+        Get-WinEvent -FilterHashtable @{{LogName = 'Application'; StartTime = $date_fetched}} | ForEach-Object {{
+            $_ | Select-Object @{{
+                Name = 'TimeCreatedLocal';
+                Expression = {{ $_.TimeCreated.ToLocalTime() }}
+            }}, *
+        }} | ConvertTo-Json -Depth 5
         """
-            
+
     else:
         ps_script = """
-                Get-WinEvent -LogName Application | ConvertTo-Json
+                Get-WinEvent -LogName Application | ForEach-Object {
+                    $_ | Select-Object @{Name="TimeCreatedLocal";Expression={$_.TimeCreated.ToLocalTime()}}, *
+                } | ConvertTo-Json -Depth 5
                 """
             
     if hostname == local_hostname:
         result = subprocess.run(["powershell", "-Command", ps_script], capture_output=True, text=True)
         logs_output = result.stdout
         result.status_code = 0
- 
     else:
         # Fetch logs from the remote machine using WinRM
         session = winrm.Session(f'http://{hostname}:5985/wsman', auth=(username, password), transport='basic')
@@ -221,15 +222,16 @@ def fetch_logs(hostname, username, password, last_fetched):
             logs_data = json.loads(logs_output)
             # Update last_fetched to the most recent log entry time
             if logs_data:
-                if "TimeCreated" in logs_data:
-                    last_fetched = logs_data['TimeCreated']
+                if "TimeCreatedLocal" in logs_data:
+                    last_fetched = logs_data['TimeCreatedLocal']['DateTime']
                 else:
-                    last_fetched = logs_data[0]['TimeCreated']
+                    last_fetched = logs_data[0]['TimeCreatedLocal']['DateTime']
             return logs_data, last_fetched
         except json.JSONDecodeError:
             return [], last_fetched
     else:
         return [], last_fetched
+
 
 
 def convert_json_date_to_datetime(json_date):
@@ -322,7 +324,7 @@ def liveLogsService(hostname, username, password, seeLogsValue):
             last_fetched = None  
             all_logs = [] 
             year_counts = {str(year): 0 for year in range(datetime.now().year - 4, datetime.now().year + 1)}
-            log_counts = [0, 0, 0, 0, 0]  # assuming log levels range from 0 to 4
+            log_counts = [0, 0, 0]  # assuming log levels range from 0 to 4
             name_counts = {}  # Dictionary to track the count of each name
             tf_hour_counts = {i: 0 for i in range(24)}
 
@@ -331,6 +333,12 @@ def liveLogsService(hostname, username, password, seeLogsValue):
             year_counts = {str(year): 0 for year in range(current_year - 4, current_year + 1)}
 
             daily_event_counts = {}
+
+            # Initialize a dictionary to hold log type counts per year
+            level_display_counts = {
+                year: {'Information': 0, 'Error': 0, 'Warning': 0} for year in year_counts
+            }
+            level_display_counts['all_years'] = {'Information': 0, 'Error': 0, 'Warning': 0}
 
             while True:
                 # Fetch new logs and update the last fetched timestamp
@@ -341,15 +349,20 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                         all_logs[:0] = new_logs
                     else:
                         if 'Level' in new_logs:
-                            all_logs[:0] = new_logs
+                            all_logs.append(new_logs)
                         else:
                             all_logs[:0] = new_logs
 
                     # If new log only has one event it is opening up, so if only one case needs this.
                     if 'Level' in new_logs:
+                        log = new_logs
                         level = log.get('Level', 0)
-                        if 0 <= level < len(log_counts):
-                            log_counts[level] += 1
+                        if level == 0 or level == 4:
+                            log_counts[0] = log_counts[0] + 1
+                        elif level == 3 or level == 1:
+                            log_counts[1] = log_counts[1] + 1
+                        elif level == 2:
+                            log_counts[2] = log_counts[2] + 1
                         
                         timestamp = log.get('TimeCreated')
                         year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
@@ -381,14 +394,16 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                         if name:
                             name_counts[name] = name_counts.get(name, 0) + 1
 
-                        
-
                     # If multiple logs present do iteration
                     else:
                         for log in new_logs:
                             level = log.get('Level', 0)
-                            if 0 <= level < len(log_counts):
-                                log_counts[level] += 1
+                            if level == 0 or level == 4:
+                                log_counts[0] = log_counts[0] + 1
+                            elif level == 3 or level == 1:
+                                log_counts[1] = log_counts[1] + 1
+                            elif level == 2:
+                                log_counts[2] = log_counts[2] + 1
                             
                             timestamp = log.get('TimeCreated')
                             year = datetime.fromtimestamp(int(re.search(r'\d+', timestamp).group())/1000).strftime('%Y')
@@ -419,12 +434,6 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                             name = log.get('ProviderName')
                             if name:
                                 name_counts[name] = name_counts.get(name, 0) + 1
-
-                    # Initialize a dictionary to hold log type counts per year
-                    level_display_counts = {
-                        year: {'Information': 0, 'Error': 0, 'Warning': 0} for year in year_counts
-                    }
-                    level_display_counts['all_years'] = {'Information': 0, 'Error': 0, 'Warning': 0}
 
                     if 'LevelDisplayName' in new_logs:
                         level_display_name = new_logs.get('LevelDisplayName')
@@ -461,7 +470,7 @@ def liveLogsService(hostname, username, password, seeLogsValue):
             def generate():
                 all_logs = log_values
                 year_counts = {str(year): 0 for year in range(datetime.now().year - 4, datetime.now().year + 1)}
-                log_counts = [0, 0, 0, 0, 0]  # assuming log levels range from 0 to 4
+                log_counts = [0, 0, 0]
                 name_counts = {}  # Dictionary to track the count of each name
                 tf_hour_counts = {i: 0 for i in range(24)}
 
@@ -471,16 +480,28 @@ def liveLogsService(hostname, username, password, seeLogsValue):
 
                 daily_event_counts = {}
 
+                # Initialize a dictionary to hold log type counts per year
+                level_display_counts = {
+                    year: {'Information': 0, 'Error': 0, 'Warning': 0} for year in year_counts
+                }
+                level_display_counts['all_years'] = {'Information': 0, 'Error': 0, 'Warning': 0}
+
                 while True:
                     # Fetch new logs and update the last fetched timestamp
                     new_logs = all_logs
+                    all_logs_count = len(new_logs)
                     if new_logs:
                         # If new log only has one event it is opening up, so if only one case needs this.
                         if 'Level' in new_logs:
                             # Number of events per level calculation
-                            level = new_logs.get('Level', 0)  
-                            if 0 <= level < len(log_counts):
-                                log_counts[level] += 1
+                            log = new_logs
+                            level = log.get('Level', 0)
+                            if level == 0 or level == 4:
+                                log_counts[0] = log_counts[0] + 1
+                            elif level == 3 or level == 1:
+                                log_counts[1] = log_counts[1] + 1
+                            elif level == 2:
+                                log_counts[2] = log_counts[2] + 1
 
                             # Filtering number of events for past 5 years
                             timestamp = new_logs.get('TimeCreated')
@@ -520,15 +541,32 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                                 level = int(log.get('Level', 0))
 
                                 if level == 0 or level == 4:
+                                    log_counts[0] = log_counts[0] + 1
+                                elif level == 3 or level == 1:
+                                    log_counts[1] = log_counts[1] + 1
+                                elif level == 2:
+                                    log_counts[2] = log_counts[2] + 1
+
+                                if level == 0 or level == 4:
                                     l['LevelDisplayName'] = 'Information'
                                 elif level == 2:
                                     l['LevelDisplayName'] = 'Error'
-                                else:
+                                elif level == 3:
                                     l['LevelDisplayName'] = 'Warning'
                                 
                                 l['TimeCreated'] = l['Event']['System']['TimeCreated']['@SystemTime']
                                 l['TimeCreated'] = f"/Date({int(datetime.strptime(l['TimeCreated'], '%Y-%m-%d %H:%M:%S.%f').timestamp() * 1000)})/"
+                                # Extract the timestamp from the string
+                                timestamp = int(l['TimeCreated'][6:-2]) / 1000
 
+                                # Convert the timestamp to a datetime object
+                                time_created_local = datetime.fromtimestamp(timestamp)
+
+                                l['TimeCreatedLocal'] = {}
+
+                                # Format the datetime object to the desired format
+                                l['TimeCreatedLocal']['DateTime'] = time_created_local.strftime('%A, %B %d, %Y %I:%M:%S %p')
+                                l['RecordId'] = l['Event']['System']['EventRecordID']
                                 l['Id'] = l['Event']['System']['EventID']['@Qualifiers'] if l['Event']['System']['EventID']['@Qualifiers'] else l['Event']['System']['EventID']['#text']
                                 l['ProviderName'] = l['Event']['System']['Provider']['@Name']
                                 l['Message'] = (
@@ -536,9 +574,6 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                                     else l['Event']['EventData']['Data'] if l.get('Event', {}).get('EventData', {}).get('Data', None) 
                                     else "No Data is Available"
                                 )() if l.get('Event') and l['Event'].get('EventData') else "No Data is Available"
-
-                                if 0 <= level < len(log_counts):
-                                    log_counts[level] += 1
                                 
                                 timestamp = log['TimeCreated']['@SystemTime']
                                 year = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S.%f').year
@@ -599,7 +634,7 @@ def liveLogsService(hostname, username, password, seeLogsValue):
                                         level_display_counts[year][level_display_name] += 1
                                         level_display_counts['all_years'][level_display_name] += 1
 
-                    yield f"data: {json.dumps({'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'tenHourCount': tf_hour_counts, 'dailyEventCounts': daily_event_counts, 'all_year_split_counts': level_display_counts,'levelDisplayCounts': level_display_counts, 'newLogs': new_logs})}\n\n"
+                    yield f"data: {json.dumps({'logsCount': all_logs_count, 'counts': log_counts, 'yearCounts': year_counts, 'nameCounts': name_counts, 'dailyEventCounts': daily_event_counts, 'all_year_split_counts': level_display_counts,'levelDisplayCounts': level_display_counts, 'allLogs': all_logs, 'newLogs': new_logs})}\n\n"
                     time.sleep(10000000)
 
             return Response(generate(), mimetype="text/event-stream")

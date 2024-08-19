@@ -59,28 +59,58 @@ eventSource.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
     // Update counts in the cards
-    document.getElementById("warning-count").textContent = data.counts[3];  // Warning
+    document.getElementById("info-count").textContent = data.counts[0]     // Information
+    document.getElementById("warning-count").textContent = data.counts[1];  // Warning
     document.getElementById("error-count").textContent = data.counts[2];    // Error
-    document.getElementById("info-count").textContent = data.counts[4] + data.counts[0];     // Information
-    document.getElementById("total-count").textContent = data.counts.reduce((a, b) => a + b, 0); // Total Logs
+    document.getElementById("total-count").textContent = data.counts[0] + data.counts[1] + data.counts[2]
 
     // Update Pie chart data
-    const reorderedData = [data.counts[3], data.counts[2], data.counts[4] + data.counts[0]];
+    const reorderedData = [data.counts[1], data.counts[2], data.counts[0]];
     logPieChart.data.datasets[0].data = reorderedData;
     logPieChart.update();
-    
-    const totalLogs = data.logsCount; // Use totalLogs if available, otherwise default to 1000
-    const numberFilter = document.getElementById('numberFilter');
-    numberFilter.max = totalLogs;
-    numberFilter.value = totalLogs; // Set the initial value to the max (total logs)
-    updateNumberFilterLabel(totalLogs);
 
     generateLogCards(data.allLogs);
 
     const yearlyEventCounts = data.yearCounts;
 
+    const yearSelect = document.getElementById('yearSelect');
+    yearSelect.removeEventListener('change', handleYearChange); // Remove existing listener if any
+
+    function handleYearChange() {
+        const selectedYear = this.value;
+
+        if (selectedYear === 'all') {
+            // Load the existing line graph for all years
+            logLineChart.data = prepareYearlyLineChartData(yearlyEventCounts);
+            logLineChart.update();
+
+            // Update donut charts for all years
+            updateDonutCharts(data.all_year_split_counts.all_years);
+        } else {
+            // Load a time series graph for the selected year
+            const dailyEventData = data.dailyEventCounts[selectedYear] || {};
+            logLineChart.data = prepareTimeSeriesData(dailyEventData);
+            logLineChart.update();
+
+            // Update donut charts for the selected year
+            updateDonutCharts(data.all_year_split_counts[selectedYear]);
+        }
+    }
+
+    // Ensure that data is correctly assigned to the chart and then updated
+    // if (logLineChart) {
+    //     logLineChart.destroy();
+    // }
+
+    // if (infoChart) {
+    //     infoChart.destroy();
+    // }
+
     // Call the function to populate the dropdown
     populateYearDropdown(yearlyEventCounts);
+
+    // Reinitialize the selectpicker after updating the dropdown
+    $('#yearSelect').selectpicker('refresh');
 
     document.getElementById('yearSelect').addEventListener('change', function () {
         const selectedYear = this.value;
@@ -207,6 +237,8 @@ eventSource.onmessage = function(event) {
     });
 
     eventTypeChart.update();
+
+    displayLogsForLevel(globalLevel || 'Total', false);
 };
 
 $(document).on('click', '[data-card-widget="maximize"]', function() {
@@ -283,9 +315,11 @@ function populateYearDropdown(yearlyEventCounts) {
     });
 
     // Apply Bootstrap Select styling for better appearance
-    $(yearSelect).selectpicker({
-        style: 'btn-primary',
-        size: 4
+    $(document).ready(function () {
+        $('#yearSelect').selectpicker({
+            style: 'btn-primary',
+            size: 4
+        });
     });
 }
 
@@ -616,9 +650,7 @@ var storedLogs = {};
 var globalLevel = "";
 
 function generateLogCards(allLogs) {
-    console.log("New Logs", allLogs)
     storedLogs = allLogs; // Update the global variable
-    console.log("storedLogs in Generate", storedLogs)
 
     // Add click event listeners to each card
     // Select all the cards using the class 'small-box'
@@ -650,8 +682,6 @@ function displayLogsForLevel(level, changeNumber) {
     const logDetailsBody = document.getElementById('log-details-body');
     const timeFilter = document.getElementById('timeFilter').value;
     const numberFilter = parseInt(document.getElementById('numberFilter').value);
-
-    console.log("storedLogs", storedLogs)
 
     // Clear previous logs
     logDetailsBody.innerHTML = '';
@@ -686,14 +716,16 @@ function displayLogsForLevel(level, changeNumber) {
     // Apply the number filter
     filteredLogs = filteredLogs.slice(0, numberFilter);
 
+    // Sort based on newest
+    filteredLogs.sort((a, b) => new Date(b.TimeCreatedLocal.DateTime) - new Date(a.TimeCreatedLocal.DateTime));
+
     // Populate the table with logs
     filteredLogs.forEach(log => {
-        const timestamp = parseInt(log.TimeCreated.match(/\d+/)[0]);
         const row = `
-        <tr class="log-row" data-toggle="modal" data-target="#logDetailModal" data-log-id="${log.Id}">
+        <tr class="log-row" data-toggle="modal" data-target="#logDetailModal" data-log-id="${log.RecordId}">
             <td>${log.LevelDisplayName}</td>
             <td>${log.Id}</td>
-            <td>${new Date(timestamp).toString()}</td>
+            <td>${log.TimeCreatedLocal.DateTime}</td>
             <td>${log.ProviderName}</td>
         </tr>
         `;
@@ -718,22 +750,23 @@ function displayLogsForLevel(level, changeNumber) {
 
 function displayLogDetailsModal(logId) {
     // Find the log with the matching ID from storedLogs
-    const log = storedLogs.find(log => log.Id == logId);
+    const logFind = storedLogs.find(log => log.RecordId == logId);
 
-    // Check if the log is found
-    if (!log) {
-        console.error(`Log with ID ${logId} not found.`);
-        return;
-    }
+    // // Check if the log is found
+    // if (!logFind) {
+    //     console.error(`Log with ID ${logId} not found.`);
+    //     return;
+    // }
 
     // Populate the modal with log details
+    console.log(logFind)
     const modalLogDetails = document.getElementById('modal-log-details');
     modalLogDetails.innerHTML = `
-        <p><strong>Event ID:</strong> ${log.LevelDisplayName}</p>
-        <p><strong>Event ID:</strong> ${log.Id}</p>
-        <p><strong>Time Created:</strong> ${new Date(parseInt(log.TimeCreated.match(/\d+/)[0])).toString()}</p>
-        <p><strong>Provider Name:</strong> ${log.ProviderName}</p>
-        <p><strong>Message:</strong> ${log.Message}</p>
+        <p><strong>Event ID:</strong> ${logFind.Id}</p>
+        <p><strong>Event Level:</strong> ${logFind.LevelDisplayName}</p>
+        <p><strong>Time Created:</strong> ${logFind.TimeCreatedLocal.DateTime}</p>
+        <p><strong>Provider Name:</strong> ${logFind.ProviderName}</p>
+        <p><strong>Message:</strong> ${logFind.Message}</p>
     `;
 }
 

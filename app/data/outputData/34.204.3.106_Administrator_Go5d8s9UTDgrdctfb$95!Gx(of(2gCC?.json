@@ -1,0 +1,2116 @@
+{
+    "hostname": "34.204.3.106",
+    "username": "Administrator",
+    "password": "Go5d8s9UTDgrdctfb$95!Gx(of(2gCC?",
+    "application": [
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:47:48.468000Z"
+                    },
+                    "EventRecordID": "12891",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:43:38.436000Z"
+                    },
+                    "EventRecordID": "12890",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-LoadPerf",
+                        "@Guid": "122ee297-bb47-41ae-b265-1ca8d1886d40"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1000
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:43:09.312000Z"
+                    },
+                    "EventRecordID": "12889",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2496,
+                        "@ThreadID": 2900
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-LoadPerf",
+                        "@Guid": "122ee297-bb47-41ae-b265-1ca8d1886d40"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1001
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:43:09.212000Z"
+                    },
+                    "EventRecordID": "12888",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2496,
+                        "@ThreadID": 2900
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:43:06.311000Z"
+                    },
+                    "EventRecordID": "12887",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 903
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:41:31.906000Z"
+                    },
+                    "EventRecordID": "12886",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:41:31.875000Z"
+                    },
+                    "EventRecordID": "12885",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 902
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:41:01.825000Z"
+                    },
+                    "EventRecordID": "12884",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1003
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:41:01.763000Z"
+                    },
+                    "EventRecordID": "12883",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1040
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:41:01.653000Z"
+                    },
+                    "EventRecordID": "12882",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1066
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:41:01.544000Z"
+                    },
+                    "EventRecordID": "12881",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:40:59.747000Z"
+                    },
+                    "EventRecordID": "12880",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 900
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:40:57.872000Z"
+                    },
+                    "EventRecordID": "12879",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-MSDTC 2",
+                        "@Guid": "5d9e0020-3761-4f36-90c8-38ce6511bd12"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 4202
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 2,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:40:57.278000Z"
+                    },
+                    "EventRecordID": "12878",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "edgeupdate",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 0
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:40:56.038000Z"
+                    },
+                    "EventRecordID": "12877",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Desktop Window Manager",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 9027
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:39:17.093000Z"
+                    },
+                    "EventRecordID": "12876",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-WMI",
+                        "@Guid": "1edeee53-0afe-4609-b846-d8c0b2075b1f"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 5617
+                    },
+                    "Version": 2,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:38:56.022000Z"
+                    },
+                    "EventRecordID": "12875",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1188,
+                        "@ThreadID": 2556
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-WMI",
+                        "@Guid": "1edeee53-0afe-4609-b846-d8c0b2075b1f"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 5615
+                    },
+                    "Version": 2,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:38:51.994000Z"
+                    },
+                    "EventRecordID": "12874",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1188,
+                        "@ThreadID": 2008
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-User Profiles Service",
+                        "@Guid": "89b1e9f0-5aff-44a6-9b44-0a07a7ce5845"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1531
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:38:50.645000Z"
+                    },
+                    "EventRecordID": "12873",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 1188,
+                        "@ThreadID": 1240
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-EventSystem",
+                        "@Guid": "899daace-4868-4295-afcd-9eb8fb497561"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 4625
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:38:50.505000Z"
+                    },
+                    "EventRecordID": "12872",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Desktop Window Manager",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 9027
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-19T09:38:50.474000Z"
+                    },
+                    "EventRecordID": "12871",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-User Profiles Service",
+                        "@Guid": "89b1e9f0-5aff-44a6-9b44-0a07a7ce5845"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1532
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T16:19:06.432000Z"
+                    },
+                    "EventRecordID": "12870",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 564,
+                        "@ThreadID": 1296
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Winlogon",
+                        "@Guid": "dbe9b383-7cf3-4331-91cc-a3cb16a3b538"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 32768,
+                        "#text": 6000
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T16:19:04.894000Z"
+                    },
+                    "EventRecordID": "12869",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "XENAGENT",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 1
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T16:19:01.036000Z"
+                    },
+                    "EventRecordID": "12868",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:26:31.755000Z"
+                    },
+                    "EventRecordID": "12867",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:25:57.479000Z"
+                    },
+                    "EventRecordID": "12866",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:25:56.474000Z"
+                    },
+                    "EventRecordID": "12865",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:25:47.692000Z"
+                    },
+                    "EventRecordID": "12864",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:25:45.192000Z"
+                    },
+                    "EventRecordID": "12863",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 790
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:24:42.473000Z"
+                    },
+                    "EventRecordID": "12862",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T14:24:22.863000Z"
+                    },
+                    "EventRecordID": "12861",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:31:58.756000Z"
+                    },
+                    "EventRecordID": "12860",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:30:45.973000Z"
+                    },
+                    "EventRecordID": "12859",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:28:23.428000Z"
+                    },
+                    "EventRecordID": "12858",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:23:25.132000Z"
+                    },
+                    "EventRecordID": "12857",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:21:37.865000Z"
+                    },
+                    "EventRecordID": "12856",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:20:03.259000Z"
+                    },
+                    "EventRecordID": "12855",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:20:01.862000Z"
+                    },
+                    "EventRecordID": "12854",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Error",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:19:45.740000Z"
+                    },
+                    "EventRecordID": "12853",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Come on",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 0,
+                        "#text": 785
+                    },
+                    "Version": 0,
+                    "Level": "3",
+                    "Source": "Verbose",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:18:29.099000Z"
+                    },
+                    "EventRecordID": "12852",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 28,
+                            "AccountDomainSid": "S-1-5-21-3575646855-3131785587-1589816510",
+                            "Value": "S-1-5-21-3575646855-3131785587-1589816510-500"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Desktop Window Manager",
+                        "@Guid": null
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 9027
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T13:14:53.074000Z"
+                    },
+                    "EventRecordID": "12851",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:55:05.837000Z"
+                    },
+                    "EventRecordID": "12850",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:54:28.870000Z"
+                    },
+                    "EventRecordID": "12849",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:48:51.695000Z"
+                    },
+                    "EventRecordID": "12848",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-LoadPerf",
+                        "@Guid": "122ee297-bb47-41ae-b265-1ca8d1886d40"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1000
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:48:29.127000Z"
+                    },
+                    "EventRecordID": "12847",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2264,
+                        "@ThreadID": 1532
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-LoadPerf",
+                        "@Guid": "122ee297-bb47-41ae-b265-1ca8d1886d40"
+                    },
+                    "EventID": {
+                        "@Qualifiers": null,
+                        "#text": 1001
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": -9223372036854775808,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:48:29.051000Z"
+                    },
+                    "EventRecordID": "12846",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 2264,
+                        "@ThreadID": 1532
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": {
+                            "BinaryLength": 12,
+                            "AccountDomainSid": null,
+                            "Value": "S-1-5-18"
+                        }
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 49152,
+                        "#text": 16394
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:48:21.507000Z"
+                    },
+                    "EventRecordID": "12845",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 903
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:47:00.113000Z"
+                    },
+                    "EventRecordID": "12844",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": []
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 16384
+                    },
+                    "Version": 0,
+                    "Level": "4",
+                    "Source": "Information",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:47:00.082000Z"
+                    },
+                    "EventRecordID": "12843",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty",
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        },
+        {
+            "Event": {
+                "@xmlns": "http://schemas.microsoft.com/win/2004/08/events/event",
+                "System": {
+                    "Provider": {
+                        "@Name": "Microsoft-Windows-Security-SPP",
+                        "@Guid": "e23b33b0-c8c9-472c-a5f9-f2bdfea0f156"
+                    },
+                    "EventID": {
+                        "@Qualifiers": 16384,
+                        "#text": 902
+                    },
+                    "Version": 0,
+                    "Level": "0",
+                    "Source": "Critical",
+                    "Task": 0,
+                    "Opcode": 0,
+                    "Keywords": 36028797018963968,
+                    "TimeCreated": {
+                        "@SystemTime": "2024-08-16T12:46:29.957000Z"
+                    },
+                    "EventRecordID": "12842",
+                    "Correlation": {},
+                    "Execution": {
+                        "@ProcessID": 0,
+                        "@ThreadID": 0
+                    },
+                    "Channel": "Application",
+                    "Computer": "EC2AMAZ-3I4MKBB",
+                    "Security": {
+                        "@UserID": null
+                    }
+                },
+                "EventData": {
+                    "Data": [
+                        "System.Diagnostics.Eventing.Reader.EventProperty"
+                    ]
+                }
+            }
+        }
+    ]
+}

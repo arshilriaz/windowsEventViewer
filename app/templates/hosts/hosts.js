@@ -33,6 +33,42 @@ document.getElementById('hostFilter').addEventListener('change', function() {
     });
 });
 
+function filterRows(filterValue) {
+    const rows = document.querySelectorAll('table tbody tr'); // Adjust the selector to match your table structure
+
+    rows.forEach(row => {
+        const isEvtx = row.querySelector('input[name="evtx"]').value === 'true';
+
+        if (filterValue === 'evtx' && isEvtx) {
+            row.style.display = '';
+        } else if (filterValue === 'non-evtx' && !isEvtx) {
+            row.style.display = '';
+        } else if (filterValue === 'all') {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    // Update the dropdown to match the selected filter
+    document.getElementById('hostFilter').value = filterValue;
+}
+
+// Event listener for EVTX button
+document.getElementById('evtxFilterButton').addEventListener('click', function() {
+    filterRows('evtx');
+});
+
+// Event listener for Non-EVTX button
+document.getElementById('nonEvtxFilterButton').addEventListener('click', function() {
+    filterRows('non-evtx');
+});
+
+// Event listener for the dropdown
+document.getElementById('hostFilter').addEventListener('change', function() {
+    filterRows(this.value);
+});
+
 function setRemoveAction(hostname, username, password, evtx) {
     document.getElementById('confirmRemoveBtn').onclick = function() {
         // Create a form dynamically

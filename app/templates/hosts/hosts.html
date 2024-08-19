@@ -27,7 +27,7 @@
                         <a href="#" class="nav-link">About</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="#" class="nav-link">Contact</a>
+                        <a href="contact" class="nav-link">Contact</a>
                     </li>
                 </ul>
 
@@ -161,7 +161,7 @@
                             <!-- ./col -->
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-warning">
+                                <div id="evtxFilterButton" class="small-box bg-warning" style="cursor: pointer;">
                                     <div class="inner">
                                         <h3>
                                             {% set evtx_count = hosts.details | selectattr('evtx', 'equalto', true) | list | length %}
@@ -177,9 +177,10 @@
                                     </div>
                                 </div>                                                
                             </div>
+                            
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
-                                <div class="small-box bg-danger">
+                                <div id="nonEvtxFilterButton" class="small-box bg-danger" style="cursor: pointer;">
                                     <div class="inner">
                                         <h3>
                                             {% set evtx_count = hosts.details | selectattr('evtx', 'equalto', false) | list | length %}
@@ -194,6 +195,7 @@
                                     </div>
                                 </div>                        
                             </div>
+                            
                             <!-- ./col -->
                         </div>
                         <!-- /.row -->
@@ -210,7 +212,7 @@
                                             <option value="non-evtx">Non-EVTX Files</option>
                                         </select>
                                     </div>
-                                </div>                        
+                                </div>                                                       
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
