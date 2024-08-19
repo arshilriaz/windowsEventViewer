@@ -13,22 +13,10 @@
             "evtx": false
         },
         {
-            "hostname": "3.92.202.195",
-            "username": "Administrator",
-            "password": "Go5d8s9UTDgrdctfb$95!Gx(of(2gCC?",
-            "evtx": false
-        },
-        {
             "hostname": "192.168.64.38",
             "username": "RohithEV",
             "password": "38",
             "evtx": true
-        },
-        {
-            "hostname": "34.204.3.106",
-            "username": "Administrator",
-            "password": "Go5d8s9UTDgrdctfb$95!Gx(of(2gCC?",
-            "evtx": false
         }
     ]
 }
