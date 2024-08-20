@@ -542,3 +542,18 @@ const eventTypeChart = new Chart(barCtx, {
         }
     }]
 });
+
+$(document).ready(function () {
+    $('#collapseButton').on('click', function () {
+        const icon = $('#collapse-icon');
+        const collapseElement = $('#logDetailsCollapse');
+
+        collapseElement.collapse('toggle');
+
+        collapseElement.on('shown.bs.collapse', function () {
+            icon.removeClass('fa-plus').addClass('fa-minus');
+        }).on('hidden.bs.collapse', function () {
+            icon.removeClass('fa-minus').addClass('fa-plus');
+        });
+    });
+});
