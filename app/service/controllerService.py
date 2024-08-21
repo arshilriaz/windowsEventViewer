@@ -1,7 +1,6 @@
 import os
 import json
 import winrm
-from Evtx.Evtx import FileHeader
 from xml.etree.ElementTree import XML
 from datetime import datetime
 import re
@@ -9,7 +8,7 @@ from flask import jsonify
 import subprocess
 import time
 from datetime import timedelta
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 import platform
 from flask import Response, jsonify, url_for, redirect
 from app.service.modelService import add_machine_and_event

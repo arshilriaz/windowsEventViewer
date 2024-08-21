@@ -711,10 +711,10 @@ function displayLogsForLevel(level, changeNumber) {
         number_Filter.max = roundedNumber;
         number_Filter.value = roundedNumber; // Set the initial value to the max (total logs)
         updateNumberFilterLabel(roundedNumber)
+        filteredLogs = filteredLogs.slice(0, roundedNumber);
+    } else {
+        filteredLogs = filteredLogs.slice(0, numberFilter);
     }
-
-    // Apply the number filter
-    filteredLogs = filteredLogs.slice(0, numberFilter);
 
     // Sort based on newest
     filteredLogs.sort((a, b) => new Date(b.TimeCreatedLocal.DateTime) - new Date(a.TimeCreatedLocal.DateTime));

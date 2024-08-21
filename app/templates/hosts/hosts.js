@@ -64,6 +64,11 @@ document.getElementById('nonEvtxFilterButton').addEventListener('click', functio
     filterRows('non-evtx');
 });
 
+// Event listener for Non-EVTX button
+document.getElementById('allFilterButton').addEventListener('click', function() {
+    filterRows('all');
+});
+
 // Event listener for the dropdown
 document.getElementById('hostFilter').addEventListener('change', function() {
     filterRows(this.value);
